@@ -63,3 +63,37 @@
 1782058627 source:d:\facultad\programacion1\tpfinal\github\tp-final-programacion1\proyecto final progra1\productos.c
 	"Productos.h"
 
+1782079628 source:c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\clientes.c
+	"Clientes.h"
+	<string.h>
+
+1782079628 c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\clientes.h
+	<stdio.h>
+	"Productos.h"
+
+1782081048 c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\productos.h
+	<stdio.h>
+
+1782079628 source:c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\empleados.c
+	"Empleados.h"
+	<string.h>
+
+1782079628 c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\empleados.h
+	<stdio.h>
+
+1782079628 source:c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\main.c
+	<stdio.h>
+	<stdlib.h>
+	<windows.h>
+	"Menus.h"
+
+1782079628 c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\menus.h
+
+1782080933 source:c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\menus.c
+	"Menus.h"
+	"Clientes.h"
+	"Empleados.h"
+	<stdio.h>
+	<string.h>
+	<windows.h>
+

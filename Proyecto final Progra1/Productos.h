@@ -1,6 +1,6 @@
 #ifndef PRODUCTOS_H_INCLUDED
 #define PRODUCTOS_H_INCLUDED
-
+#include <stdio.h>
 #define DIMTEXTO 30
 
 typedef struct
@@ -8,16 +8,24 @@ typedef struct
     int id;
     char nombre[DIMTEXTO];
     float precio;
-}stProducto;
+    int stock;
+    int economico;
+    int activo;
+
+} stProducto;
 
 //ALTA
-
-//BAJA
-
-//MODIFICACION
-
+void cargarStProducto(char archivoProducto[]);
+stProducto cargaProducto();
+//BAJA Y MODIFICACION
+stProducto menuProdElegido(stProducto prod);
 //CONSULTA
-
+void mostrarProducto(char archivoProducto[]);
+void mostrarP(stProducto prod);
+void buscarProducto(char archivoProducto[]);
+void buscarPorNombre(FILE* archi);
+void buscarPorId(FILE* archi);
 //LISTADO
+void mostrarProductoEconomico(char archivoProducto[]);
 
 #endif // PRODUCTOS_H_INCLUDED

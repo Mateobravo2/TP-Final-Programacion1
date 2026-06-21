@@ -12,46 +12,47 @@ void menuPrincipal()
     int op;
     do
     {
-            printf("Ingrese una opcion:\n");
-            printf("_________________\n");
-            printf("|\x1b[34m[1] CLIENTE\x1b[0m    |\n");
-            printf("|\x1b[33m[2] EMPLEADO\x1b[0m   |\n");
-            printf("|\x1b[32m[3] PRODUCTO\x1b[0m   |\n");
-            printf("|\x1b[31m[0] SALIR\x1b[0m      |\n");
-            printf("-----------------\n");
-            if (scanf("%i", &op) != 1)
-            {
-                while (getchar() != '\n');
-                op = -1;
-            }
-            system("cls");
+        printf("Ingrese una opcion:\n");
+        printf("_________________\n");
+        printf("|\x1b[34m[1] CLIENTE\x1b[0m    |\n");
+        printf("|\x1b[33m[2] EMPLEADO\x1b[0m   |\n");
+        printf("|\x1b[32m[3] PRODUCTO\x1b[0m   |\n");
+        printf("|\x1b[31m[0] SALIR\x1b[0m      |\n");
+        printf("-----------------\n");
+        if (scanf("%i", &op) != 1)
+        {
+            while (getchar() != '\n');
+            op = -1;
+        }
+        system("cls");
         switch(op)
         {
         default:
             printf("~ ~ ~ INGRESE UNA OPCION VALIDA ~ ~ ~\n");
             system("pause");
             system("cls");
-        break;
+            break;
         case 1:
             system("cls");
             barraCarga();
             menuClientes();
-        break;
+            break;
         case 2:
             system("cls");
             barraCarga();
             menuEmpleado();
-        break;
+            break;
         case 3:
             system("cls");
             barraCarga();
             menuProducto();
-        break;
+            break;
         case 0:
             printf("- - - FINALIZANDO EL PROGRAMA - - -\n");
-        break;
+            break;
         }
-    }while(op != 0);
+    }
+    while(op != 0);
 }
 
 void barraCarga()
@@ -99,73 +100,74 @@ void menuClientes()
         switch(op)
         {
         default:
-                printf("~ ~ ~ INGRESE UNA OPCION VALIDA ~ ~ ~\n");
+            printf("~ ~ ~ INGRESE UNA OPCION VALIDA ~ ~ ~\n");
+            system("pause");
+            system("cls");
+            break;
+        case 0:
+            printf("- - - VOLVIENDO AL MENU PRINCIPAL - - -");
+            barraCarga();
+            break;
+        case 1:
+            altaClientesArchivo(nombre);
+            system("pause");
+            system("cls");
+            break;
+        case 2:
+            printf("Ingrese el ID del cliente: ");
+            if (scanf("%i", &id) != 1)
+            {
+                printf("\nERROR: Ingrese un valor valido.\n");
+                while (getchar() != '\n');
+                op = -1;
                 system("pause");
                 system("cls");
+            }
+            bajaDeClienteDeArchivo(nombre, id);
             break;
-            case 0:
-                printf("- - - VOLVIENDO AL MENU PRINCIPAL - - -");
-                barraCarga();
+        case 3:
+            printf("Ingrese el ID del cliente: ");
+            if (scanf("%i", &id) != 1)
+            {
+                printf("\nERROR: Ingrese un valor valido.\n");
+                while (getchar() != '\n');
+                op = -1;
+            }
+            modificarClienteDeArchivo(nombre, id);
+            system("pause");
+            system("cls");
             break;
-            case 1:
-                altaClientesArchivo(nombre);
-                system("pause");
-                system("cls");
+        case 4:
+            mostrarArchivoClientes(nombre);
+            system("pause");
+            system("cls");
             break;
-            case 2:
-                printf("Ingrese el ID del cliente: ");
-                if (scanf("%i", &id) != 1)
-                {
-                    printf("\nERROR: Ingrese un valor valido.\n");
-                    while (getchar() != '\n');
-                    op = -1;
-                    system("pause");
-                    system("cls");
-                }
-                bajaDeClienteDeArchivo(nombre, id);
-            break;
-            case 3:
-                printf("Ingrese el ID del cliente: ");
-                if (scanf("%i", &id) != 1)
-                {
-                    printf("\nERROR: Ingrese un valor valido.\n");
-                    while (getchar() != '\n');
-                    op = -1;
-                }
-                modificarClienteDeArchivo(nombre, id);
-                system("pause");
-                system("cls");
-            break;
-            case 4:
-                mostrarArchivoClientes(nombre);
-                system("pause");
-                system("cls");
-            break;
-            case 5:
-                printf("Ingrese el ID del cliente: ");
-                if (scanf("%i", &id) != 1)
-                {
-                    printf("\nERROR: Ingrese un valor valido.\n");
-                    while (getchar() != '\n');
-                    op = -1;
-                }
-                mostrarClientesArchivoID(nombre, id);
+        case 5:
+            printf("Ingrese el ID del cliente: ");
+            if (scanf("%i", &id) != 1)
+            {
+                printf("\nERROR: Ingrese un valor valido.\n");
+                while (getchar() != '\n');
+                op = -1;
+            }
+            mostrarClientesArchivoID(nombre, id);
 
-                    system("pause");
-                    system("cls");
+            system("pause");
+            system("cls");
             break;
-            case 6:
-                listarClientesSeleccionAlfabetica(nombre);
-                system("pause");
-                system("cls");
+        case 6:
+            listarClientesSeleccionAlfabetica(nombre);
+            system("pause");
+            system("cls");
             break;
-            case 7:
-                listarClientesInsercionDni(nombre);
-                system("pause");
-                system("cls");
+        case 7:
+            listarClientesInsercionDni(nombre);
+            system("pause");
+            system("cls");
             break;
         }
-    }while(op != 0);
+    }
+    while(op != 0);
 }
 
 void menuEmpleado()
@@ -192,73 +194,117 @@ void menuEmpleado()
         system("cls");
         switch(op)
         {
-            case 1:
-                altaEmpleado(nombreArchivo);
+        case 1:
+            altaEmpleado(nombreArchivo);
+            system("pause");
+            system("cls");
+            break;
+        case 2:
+            printf("Ingrese la ID del empleado: ");
+            if (scanf("%i", &id) != 1)
+            {
+                while (getchar() != '\n');
+                op = -1;
                 system("pause");
                 system("cls");
+            }
+            bajaEmpleadoArchivo(nombreArchivo, id);
             break;
-            case 2:
-                printf("Ingrese la ID del empleado: ");
-                if (scanf("%i", &id) != 1)
-                {
-                    while (getchar() != '\n');
-                    op = -1;
-                    system("pause");
-                    system("cls");
-                }
-                bajaEmpleadoArchivo(nombreArchivo, id);
-            break;
-            case 3:
-                printf("Ingrese la ID del empleado: ");
-                if (scanf("%i", &id) != 1)
-                {
-                    while (getchar() != '\n');
-                    op = -1;
-                    system("pause");
-                    system("cls");
-                }
-                modificarEmpleadoArchivo(nombreArchivo, id);
-            break;
-            case 4:
-                mostrarArchivoEmpleado(nombreArchivo);
+        case 3:
+            printf("Ingrese la ID del empleado: ");
+            if (scanf("%i", &id) != 1)
+            {
+                while (getchar() != '\n');
+                op = -1;
                 system("pause");
                 system("cls");
+            }
+            modificarEmpleadoArchivo(nombreArchivo, id);
             break;
-            case 5:
-                printf("Ingrese la ID del empleado: ");
-                if (scanf("%i", &id) != 1)
-                {
-                    while (getchar() != '\n');
-                    op = -1;
-                    system("pause");
-                    system("cls");
-                }
-                mostrarEmpleadosArchivoID(nombreArchivo, id);
+        case 4:
+            mostrarArchivoEmpleado(nombreArchivo);
+            system("pause");
+            system("cls");
             break;
-            case 6:
-                listarEmpleadosSeleccionAlfabetica(nombreArchivo);
+        case 5:
+            printf("Ingrese la ID del empleado: ");
+            if (scanf("%i", &id) != 1)
+            {
+                while (getchar() != '\n');
+                op = -1;
                 system("pause");
                 system("cls");
+            }
+            mostrarEmpleadosArchivoID(nombreArchivo, id);
             break;
-            case 7:
-                listarEmpleadosInsercionDni(nombreArchivo);
-                system("pause");
-                system("cls");
+        case 6:
+            listarEmpleadosSeleccionAlfabetica(nombreArchivo);
+            system("pause");
+            system("cls");
             break;
-            case 0:
-                printf("- - - VOLVIENDO AL MENU PRINCIPAL - - -");
-                barraCarga();
+        case 7:
+            listarEmpleadosInsercionDni(nombreArchivo);
+            system("pause");
+            system("cls");
             break;
-            default:
-                printf("~ ~ ~ INGRESE UNA OPCION VALIDA ~ ~ ~\n");
-                system("pause");
-                system("cls");
+        case 0:
+            printf("- - - VOLVIENDO AL MENU PRINCIPAL - - -");
+            barraCarga();
+            break;
+        default:
+            printf("~ ~ ~ INGRESE UNA OPCION VALIDA ~ ~ ~\n");
+            system("pause");
+            system("cls");
             break;
         }
-    }while(op != 0);
+    }
+    while(op != 0);
 }
 
 void menuProducto()
 {
+    char archivoProducto[]="producto.bin";
+
+
+        int controlP=0;
+        do
+        {
+            printf("------MENU PRODUCTO------\n");
+            printf("1. cargar producto\n");
+            printf("2. buscar producto\n");
+            printf("3. mostrar producto\n");
+            printf("4. mostrar productos economicos\n");
+            printf("0. salir\n");
+
+            scanf(" %i", &controlP);
+
+            switch(controlP)
+            {
+            case 1:
+                cargarStProducto(archivoProducto);
+                break;
+
+            case 2:
+                buscarProducto(archivoProducto);
+                break;
+
+            case 3:
+                mostrarProducto(archivoProducto);
+                break;
+
+            case 4:
+                mostrarProductoEconomico(archivoProducto);
+                break;
+
+            case 0:
+                printf("FIN DE LA EJECUCION...\n");
+                break;
+
+
+            }
+
+        }
+        while(controlP==0);
+
 
 }
