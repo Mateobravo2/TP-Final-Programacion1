@@ -80,14 +80,16 @@ void menuClientes()
     {
         printf("\x1b[34mCLIENTE\x1b[0m\n");
         printf("Ingrese la accion a realizar:\n");
-        printf("_________________________\n");
-        printf("|[1] ALTA DE CLIENTE        |\n");
-        printf("|[2] BAJA DE CLIENTE        |\n");
-        printf("|[3] MODIFICAR CLIENTE      |\n");
-        printf("|[4] MOSTRAR CLIENTES       |\n");
-        printf("|[5] MOSTRAR CLIENTE POR ID |\n");
-        printf("|\x1b[31m[0]        SALIR\x1b[0m           |\n");
-        printf("-------------------------\n");
+        printf("_____________________________________\n");
+        printf("|[1] ALTA DE CLIENTE                |\n");
+        printf("|[2] BAJA DE CLIENTE                |\n");
+        printf("|[3] MODIFICAR CLIENTE              |\n");
+        printf("|[4] MOSTRAR TODOS LOS CLIENTES     |\n");
+        printf("|[5] MOSTRAR CLIENTE POR ID         |\n");
+        printf("|[6] MOSTRAR CLIENTE A-Z            |\n");
+        printf("|[7] MOSTRAR CLIENTE ORDEN POR DNI  |\n");
+        printf("|\x1b[31m[0]          SALIR\x1b[0m                 |\n");
+        printf("-------------------------------------\n");
         if (scanf("%i", &op) != 1)
         {
             while (getchar() != '\n');
@@ -150,6 +152,16 @@ void menuClientes()
                     system("cls");
                 }
                 mostrarClientesArchivoID(nombre, id);
+            break;
+            case 6:
+                listarClientesSeleccionAlfabetica(nombre);
+                system("pause");
+                system("cls");
+            break;
+            case 7:
+                listarClientesInsercionDni(nombre);
+                system("pause");
+                system("cls");
             break;
         }
     }while(op != 0);
