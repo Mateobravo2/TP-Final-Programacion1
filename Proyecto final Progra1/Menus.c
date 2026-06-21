@@ -131,10 +131,10 @@ void menuClientes()
                     printf("\nERROR: Ingrese un valor valido.\n");
                     while (getchar() != '\n');
                     op = -1;
-                    system("pause");
-                    system("cls");
                 }
                 modificarClienteDeArchivo(nombre, id);
+                system("pause");
+                system("cls");
             break;
             case 4:
                 mostrarArchivoClientes(nombre);
@@ -148,10 +148,11 @@ void menuClientes()
                     printf("\nERROR: Ingrese un valor valido.\n");
                     while (getchar() != '\n');
                     op = -1;
-                    system("pause");
-                    system("cls");
                 }
                 mostrarClientesArchivoID(nombre, id);
+
+                    system("pause");
+                    system("cls");
             break;
             case 6:
                 listarClientesSeleccionAlfabetica(nombre);

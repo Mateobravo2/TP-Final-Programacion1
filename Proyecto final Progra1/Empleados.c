@@ -4,6 +4,7 @@
 //ALTA EMPLEADO
 stEmpleado crearUnEmpleado(int id)
 {
+    int c;
     char nombre[DIMTEXTO];
     char apellido[DIMTEXTO];
     stEmpleado aux;
@@ -20,9 +21,11 @@ stEmpleado crearUnEmpleado(int id)
         scanf(" %i", &edad);
     }
     while(edad < 18 || edad > 60);
+    while ((c = getchar()) != '\n' && c != EOF);
     printf("Ingrese el nombre y apellido del empleado: \n");
     fgets(aux.nombreYApellido, DIMTEXTO, stdin);
     aux.nombreYApellido[strcspn(aux.nombreYApellido, "\n")] = '\0';
+//    while ((c = getchar()) != '\n' && c != EOF);
     printf("ingrese puesto del empleado: ");
     fgets(aux.puesto, DIMTEXTO, stdin);
     aux.puesto[strcspn(aux.puesto, "\n")] = '\0';

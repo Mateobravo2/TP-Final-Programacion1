@@ -4,13 +4,16 @@
 //ALTA CLIENTE
 stCliente crearCliente(int id)
 {
+    int c;
     stCliente aux;
     printf("_______________________________\n");
     aux.id = id;
     printf("Ingrese el DNI del cliente: \n");
     scanf("%i", &aux.dni);
+    while ((c = getchar()) != '\n' && c != EOF);
     printf("Ingrese el nombre del cliente: \n");
-    scanf(" %s", &aux.nombre);
+    fgets(aux.nombre, DIMTEXTO, stdin);
+    aux.nombre[strcspn(aux.nombre, "\n")] = '\0';
     //CREACION DE PRODUCTO
     aux.activo = 1;
     printf("-------------------------------\n");
@@ -191,7 +194,7 @@ void mostrarClientesArchivoID(char nombre[], int id)
                 encontrado = 1;
             }
         }
-        if(encontrado = 0)
+        if(encontrado == 0)
         {
             printf("\nERROR: Cliente no encontrado.\n");
         }
