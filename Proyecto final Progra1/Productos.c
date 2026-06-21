@@ -233,8 +233,8 @@ void buscarPorId(FILE* archi)
         banderap=0;
 
     }
-
-    ///MODIFICACION Y BAJA
+}
+    //MODIFICACION Y BAJA
 
 stProducto menuProdElegido(stProducto prod)
 {
@@ -304,14 +304,13 @@ stProducto menuProdElegido(stProducto prod)
     return prod;
 }
 
-///LISTADO ECONOMICO
+//LISTADO ECONOMICO
 void mostrarProductoEconomico(char archivoProducto[])
 {
+    stProducto prod;
     FILE* archi= fopen(archivoProducto, "rb");
     if(archi!=NULL)
     {
-        stProducto prod;
-
         printf("------PRODUCTOS ECONOMICOS------\n");
         while(fread(&prod, sizeof(stProducto), 1, archi)>0)
         {
@@ -319,9 +318,7 @@ void mostrarProductoEconomico(char archivoProducto[])
             {
                 mostrarP(prod);
             }
-
         }
         fclose(archi);
     }
-
 }
