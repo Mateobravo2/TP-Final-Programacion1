@@ -169,7 +169,92 @@ void menuClientes()
 
 void menuEmpleado()
 {
-
+    int op, id;
+    char nombreArchivo[DIMTEXTO] = "empleados.bin";
+    do
+    {
+        printf("_____________________________________\n");
+        printf("|[1] ALTA DE EMPLEADO               |\n");
+        printf("|[2] BAJA DE EMPLEADO               |\n");
+        printf("|[3] MODIFICAR EMPLEADO             |\n");
+        printf("|[4] MOSTRAR TODOS LOS EMPLEADO     |\n");
+        printf("|[5] MOSTRAR EMPLEADO POR ID        |\n");
+        printf("|[6] MOSTRAR EMPLEADO A-Z           |\n");
+        printf("|[7] MOSTRAR EMPLEADO ORDEN POR DNI |\n");
+        printf("|\x1b[31m[0]          SALIR\x1b[0m                 |\n");
+        printf("-------------------------------------\n");
+        if (scanf("%i", &op) != 1)
+        {
+            while (getchar() != '\n');
+            op = -1;
+        }
+        system("cls");
+        switch(op)
+        {
+            case 1:
+                altaEmpleado(nombreArchivo);
+                system("pause");
+                system("cls");
+            break;
+            case 2:
+                printf("Ingrese la ID del empleado: ");
+                if (scanf("%i", &id) != 1)
+                {
+                    while (getchar() != '\n');
+                    op = -1;
+                    system("pause");
+                    system("cls");
+                }
+                bajaEmpleadoArchivo(nombreArchivo, id);
+            break;
+            case 3:
+                printf("Ingrese la ID del empleado: ");
+                if (scanf("%i", &id) != 1)
+                {
+                    while (getchar() != '\n');
+                    op = -1;
+                    system("pause");
+                    system("cls");
+                }
+                modificarEmpleadoArchivo(nombreArchivo, id);
+            break;
+            case 4:
+                mostrarArchivoEmpleado(nombreArchivo);
+                system("pause");
+                system("cls");
+            break;
+            case 5:
+                printf("Ingrese la ID del empleado: ");
+                if (scanf("%i", &id) != 1)
+                {
+                    while (getchar() != '\n');
+                    op = -1;
+                    system("pause");
+                    system("cls");
+                }
+                mostrarEmpleadosArchivoID(nombreArchivo, id);
+            break;
+            case 6:
+                listarEmpleadosSeleccionAlfabetica(nombreArchivo);
+                system("pause");
+                system("cls");
+            break;
+            case 7:
+                listarEmpleadosInsercionDni(nombreArchivo);
+                system("pause");
+                system("cls");
+            break;
+            case 0:
+                printf("- - - VOLVIENDO AL MENU PRINCIPAL - - -");
+                barraCarga();
+            break;
+            default:
+                printf("~ ~ ~ INGRESE UNA OPCION VALIDA ~ ~ ~\n");
+                system("pause");
+                system("cls");
+            break;
+        }
+    }while(op != 0);
 }
 
 void menuProducto()

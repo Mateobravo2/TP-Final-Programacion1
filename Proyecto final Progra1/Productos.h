@@ -10,4 +10,14 @@ typedef struct
     float precio;
 }stProducto;
 
+//ALTA
+
+//BAJA
+
+//MODIFICACION
+
+//CONSULTA
+
+//LISTADO
+
 #endif // PRODUCTOS_H_INCLUDED

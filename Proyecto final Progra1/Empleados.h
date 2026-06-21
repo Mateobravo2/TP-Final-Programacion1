@@ -15,9 +15,22 @@ typedef struct
     int activo;
 }stEmpleado;
 
-////EMPLEADO
+//ALTA
 stEmpleado crearUnEmpleado(int id);
 void altaEmpleado(char nombreArchivo[]);
 int verificacionEmpleado(FILE *archi, stEmpleado empleado);
+//BAJA
+void bajaEmpleadoArchivo(char nombre[], int id);
+//MODIFICACION
+stEmpleado modificarEmpleado(FILE *archi, int id);
+void modificarEmpleadoArchivo(char nombre[], int id);
+//CONSULTA
+void mostrarEmpleado(stEmpleado empleado);
+void mostrarArchivoEmpleado(char nombre[]);
+void mostrarEmpleadosArchivoID(char nombre[], int id);
+//LISTADO
+void listarEmpleadosSeleccionAlfabetica(char nombre[]);
+int pasarArchivoArreglo(char nombre[], stEmpleado arreglo[], int dim);
+void listarEmpleadosInsercionDni(char nombre[]);
 
 #endif // EMPLEADOS_H_INCLUDED
