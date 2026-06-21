@@ -26,8 +26,11 @@ void modificarClienteDeArchivo(char nombre[], int id);
 stCliente modificarCliente(FILE *archi, int id);
 //CONSULTA
 void mostrarCliente(stCliente cliente);
-void mostrarClientesArchivo(char nombre[], int id);
+void mostrarArchivoClientes(char nombre[]);
+void mostrarClientesArchivoID(char nombre[], int id);
 //LISTADOS
-
+int pasarArchivoAArreglo(char nombre[], stCliente arreglo[], int dim);
+void listarClientesSeleccionAlfabetica(char nombre[]);
+void listarClientesInsercionDni(char nombre[]);
 
 #endif // CLIENTES_H_INCLUDED

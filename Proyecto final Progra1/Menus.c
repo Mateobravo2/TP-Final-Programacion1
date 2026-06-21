@@ -74,19 +74,19 @@ void barraCarga()
 
 void menuClientes()
 {
-    int op;
+    int op, id;
     char nombre[DIMTEXTO] = "clientes.bin";
     do
     {
         printf("\x1b[34mCLIENTE\x1b[0m\n");
         printf("Ingrese la accion a realizar:\n");
         printf("_________________________\n");
-        printf("|[1] ALTA DE CLIENTE    |\n");
-        printf("|[2] BAJA DE CLIENTE    |\n");
-        printf("|[3] MODIFICAR CLIENTE  |\n");
-        printf("|[4] |\n");
-        printf("|[5] |\n");
-        printf("|\x1b[31m[0]        SALIR\x1b[0m       |\n");
+        printf("|[1] ALTA DE CLIENTE        |\n");
+        printf("|[2] BAJA DE CLIENTE        |\n");
+        printf("|[3] MODIFICAR CLIENTE      |\n");
+        printf("|[4] MOSTRAR CLIENTES       |\n");
+        printf("|[5] MOSTRAR CLIENTE POR ID |\n");
+        printf("|\x1b[31m[0]        SALIR\x1b[0m           |\n");
         printf("-------------------------\n");
         if (scanf("%i", &op) != 1)
         {
@@ -107,15 +107,49 @@ void menuClientes()
             break;
             case 1:
                 altaClientesArchivo(nombre);
+                system("pause");
+                system("cls");
             break;
             case 2:
-
+                printf("Ingrese el ID del cliente: ");
+                if (scanf("%i", &id) != 1)
+                {
+                    printf("\nERROR: Ingrese un valor valido.\n");
+                    while (getchar() != '\n');
+                    op = -1;
+                    system("pause");
+                    system("cls");
+                }
+                bajaDeClienteDeArchivo(nombre, id);
             break;
             case 3:
-
+                printf("Ingrese el ID del cliente: ");
+                if (scanf("%i", &id) != 1)
+                {
+                    printf("\nERROR: Ingrese un valor valido.\n");
+                    while (getchar() != '\n');
+                    op = -1;
+                    system("pause");
+                    system("cls");
+                }
+                modificarClienteDeArchivo(nombre, id);
             break;
             case 4:
-
+                mostrarArchivoClientes(nombre);
+                system("pause");
+                system("cls");
+            break;
+            case 5:
+                printf("Ingrese el ID del cliente: ");
+                if (scanf("%i", &id) != 1)
+                {
+                    printf("\nERROR: Ingrese un valor valido.\n");
+                    while (getchar() != '\n');
+                    op = -1;
+                    system("pause");
+                    system("cls");
+                }
+                mostrarClientesArchivoID(nombre, id);
             break;
         }
     }while(op != 0);

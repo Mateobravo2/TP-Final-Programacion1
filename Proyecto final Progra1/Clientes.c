@@ -11,6 +11,7 @@ stCliente crearCliente(int id)
     scanf("%i", &aux.dni);
     printf("Ingrese el nombre del cliente: \n");
     scanf(" %s", &aux.nombre);
+    //CREACION DE PRODUCTO
     aux.activo = 1;
     printf("-------------------------------\n");
     return aux;
@@ -23,7 +24,7 @@ void altaClientesArchivo(char nombre[])
     FILE *archi = fopen(nombre, "a+b");
     if(archi != NULL)
     {
-        if(fread(&aux, sizeof(stCliente), 1, archi) > 0)
+        while(fread(&aux, sizeof(stCliente), 1, archi) > 0)
         {
             i++;
         }
@@ -37,6 +38,7 @@ void altaClientesArchivo(char nombre[])
             fseek(archi, -sizeof(stCliente), SEEK_CUR);
             fwrite(&aux, sizeof(stCliente), 1, archi);
             printf("\nCliente guardado correctamente.\n");
+            mostrarCliente(aux);
         }
         fclose(archi);
     }
@@ -74,6 +76,7 @@ void bajaDeClienteDeArchivo(char nombre[], int id)
                 fwrite(&aux, sizeof(stCliente), 1, archi);
                 encontrado = 1;
                 printf("\nCliente dado de baja correctamente.\n");
+                mostrarCliente(aux);
             }
         }
         if(encontrado == 0)
@@ -107,18 +110,21 @@ stCliente modificarCliente(FILE *archi, int id)
                 encontrado = 1;
                 printf("\n---Modificando cliente ID: &i\n", aux.id);
                 printf("Quiere modificar el DNI? (s/n): ");
+                scanf(" %c", &op);
                 if(op == 's' || op == 'S')
                 {
                     printf("\nIngrese el nuevo DNI: ");
                     scanf("%i", &aux.dni);
                 }
-                printf("Quiere modificar el nombre? (s/n): ");
+                printf("\nQuiere modificar el nombre? (s/n): ");
+                scanf(" %c", &op);
                 if(op == 's' || op == 'S')
                 {
                     printf("\nIngrese el nuevo nombre: ");
                     scanf(" %s", &aux.nombre);
                 }
-                printf("Quiere modificar el carrito? (s/n): ");
+                printf("\nQuiere modificar el carrito? (s/n): ");
+                scanf(" %c", &op);
                 if(op == 's' || op == 'S')
                 {
                     printf("\nIngrese el nuevo carrito: ");
@@ -126,6 +132,7 @@ stCliente modificarCliente(FILE *archi, int id)
                 }
                 fseek(archi, -sizeof(stCliente), SEEK_CUR);
                 fwrite(&aux, sizeof(stCliente), 1, archi);
+                mostrarCliente(aux);
             }
         }
         if(encontrado == 0)
@@ -138,23 +145,45 @@ stCliente modificarCliente(FILE *archi, int id)
 //CONSULTA DE CLIENTE
 void mostrarCliente(stCliente cliente)
 {
-    printf("\x1b[34mCLIENTE:\x1b[0m\n\n");
+    printf("\x1b[34mCLIENTE ID |%i|:\x1b[0m\n\n", cliente.id);
     printf("____________________________\n");
-    printf("| ID: %i |\n", cliente.id);
-    printf("| DNI %i |\n", cliente.dni);
-    printf("| NOMBRE: %s\n", cliente.nombre);
+    printf(" DNI %i\n", cliente.dni);
+    printf(" NOMBRE: %s\n", cliente.nombre);
     //LLAMAR A FUNCION DE MOSTRAR PRODUCTO
+    if(cliente.activo == 1)
+    {
+        printf("ESTADO: ACTIVO\n");
+    }
+    else
+    {
+        printf("ESTADO: INACTIVO\n");
+    }
     printf("-----------------------------\n");
 }
 
-void mostrarClientesArchivo(char nombre[], int id)
+void mostrarArchivoClientes(char nombre[])
+{
+    stCliente aux;
+    FILE *archi = fopen(nombre, "rb");
+    if(archi != NULL)
+    {
+        while(fread(&aux, sizeof(stCliente), 1, archi) > 0)
+        {
+                mostrarCliente(aux);
+        }
+        fclose(archi);
+    }
+}
+
+
+void mostrarClientesArchivoID(char nombre[], int id)
 {
     int encontrado = 0;
     stCliente aux;
     FILE *archi = fopen(nombre, "rb");
     if(archi != NULL)
     {
-        while(fread(&aux, sizeof(stCliente), 1, archi) > 0)
+        while(encontrado == 0 && fread(&aux, sizeof(stCliente), 1, archi) > 0)
         {
             if(aux.id == id && aux.activo == 1)
             {
@@ -171,12 +200,73 @@ void mostrarClientesArchivo(char nombre[], int id)
 }
 
 //LISTADOS DE CLIENTE
-void listarClientesAlfabetico(char nombre[])
+void listarClientesSeleccionAlfabetica(char nombre[])
 {
+    stCliente lista[100];
+    int validos = pasarArchivoAArreglo(nombre, lista, 100);
+    int posMenor;
+    stCliente temp;
+    for(int i = 0; i < validos - 1; i++)
+    {
+        posMenor = i;
+        for(int j = i + 1; j < validos; j++)
+        {
+            if(strcasecmp(lista[j].nombre, lista[posMenor].nombre) < 0)
+            {
+                posMenor = j;
+            }
+        }
+        temp = lista[posMenor];
+        lista[posMenor] = lista[i];
+        lista[i] = temp;
+    }
+    printf("\n--- LISTADO ALFABETICO (SELECCION) ---\n");
+    for(int i = 0; i < validos; i++)
+    {
+        mostrarCliente(lista[i]);
+    }
+}
+
+int pasarArchivoAArreglo(char nombre[], stCliente arreglo[], int dim)
+{
+    stCliente aux;
     FILE *archi = fopen(nombre, "rb");
+    int i = 0;
     if(archi != NULL)
     {
-
+        while(fread(&aux, sizeof(stCliente), 1, archi) > 0 && i < dim)
+        {
+            if(aux.activo == 1)
+            {
+                arreglo[i] = aux;
+                i++;
+            }
+        }
         fclose(archi);
+    }
+    return i;
+}
+
+void listarClientesInsercionDni(char nombre[])
+{
+    stCliente lista[100];
+    int validos = pasarArchivoAArreglo(nombre, lista, 100);
+    int j;
+    stCliente aux;
+    for(int i = 1; i < validos; i++)
+    {
+        aux = lista[i];
+        j = i - 1;
+        while(j >= 0 && lista[j].dni > aux.dni)
+        {
+            lista[j + 1] = lista[j];
+            j--;
+        }
+        lista[j + 1] = aux;
+    }
+    printf("\n--- LISTADO POR DNI (INSERCION) ---\n");
+    for(int i = 0; i < validos; i++)
+    {
+        mostrarCliente(lista[i]);
     }
 }
