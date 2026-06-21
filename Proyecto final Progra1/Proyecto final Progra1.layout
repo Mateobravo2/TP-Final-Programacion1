@@ -2,54 +2,27 @@
 <CodeBlocks_layout_file>
 	<FileVersion major="1" minor="0" />
 	<ActiveTarget name="Debug" />
-	<File name="Productos.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Menus.c" open="1" top="0" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="271" topLine="0" />
+			<Cursor1 position="8855" topLine="256" />
 		</Cursor>
-	</File>
-	<File name="Menus.c" open="1" top="1" tabpos="2" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="8340" topLine="0" />
-		</Cursor>
-		<Folding>
-			<Collapse line="10" />
-			<Collapse line="57" />
-			<Collapse line="75" />
-			<Collapse line="170" />
-		</Folding>
 	</File>
 	<File name="main.c" open="1" top="0" tabpos="1" split="0" active="1" splitpos="0" zoom_1="1" zoom_2="0">
 		<Cursor>
 			<Cursor1 position="163" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="Empleados.c" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Clientes.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="7693" topLine="0" />
+			<Cursor1 position="7362" topLine="215" />
 		</Cursor>
 		<Folding>
-			<Collapse line="5" />
-			<Collapse line="33" />
-			<Collapse line="60" />
-			<Collapse line="76" />
-			<Collapse line="104" />
-			<Collapse line="114" />
-			<Collapse line="168" />
-			<Collapse line="187" />
-			<Collapse line="201" />
-			<Collapse line="225" />
-			<Collapse line="252" />
-			<Collapse line="272" />
+			<Collapse line="23" />
 		</Folding>
 	</File>
-	<File name="Productos.c" open="1" top="0" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Productos.c" open="1" top="1" tabpos="7" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="0" topLine="0" />
-		</Cursor>
-	</File>
-	<File name="Empleados.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
-		<Cursor>
-			<Cursor1 position="264" topLine="0" />
+			<Cursor1 position="7304" topLine="291" />
 		</Cursor>
 	</File>
 	<File name="Clientes.h" open="1" top="0" tabpos="4" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
@@ -57,15 +30,27 @@
 			<Cursor1 position="683" topLine="0" />
 		</Cursor>
 	</File>
-	<File name="Clientes.c" open="1" top="0" tabpos="3" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+	<File name="Empleados.h" open="1" top="0" tabpos="6" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
 		<Cursor>
-			<Cursor1 position="4625" topLine="87" />
+			<Cursor1 position="60" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="Productos.h" open="1" top="0" tabpos="8" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="58" topLine="0" />
+		</Cursor>
+	</File>
+	<File name="Empleados.c" open="1" top="0" tabpos="5" split="0" active="1" splitpos="0" zoom_1="0" zoom_2="0">
+		<Cursor>
+			<Cursor1 position="7693" topLine="138" />
 		</Cursor>
 		<Folding>
-			<Collapse line="5" />
-			<Collapse line="20" />
-			<Collapse line="47" />
-			<Collapse line="63" />
+			<Collapse line="36" />
+			<Collapse line="107" />
+			<Collapse line="171" />
+			<Collapse line="190" />
+			<Collapse line="228" />
+			<Collapse line="255" />
 		</Folding>
 	</File>
 </CodeBlocks_layout_file>
