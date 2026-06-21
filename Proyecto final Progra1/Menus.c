@@ -12,6 +12,7 @@ void menuPrincipal()
     int op;
     do
     {
+            printf("MENU PRINCIPAL\n ");
             printf("Ingrese una opcion:\n");
             printf("_________________\n");
             printf("|\x1b[34m[1] CLIENTE\x1b[0m    |\n");
@@ -174,6 +175,7 @@ void menuEmpleado()
     char nombreArchivo[DIMTEXTO] = "empleados.bin";
     do
     {
+        printf("\x1b[33mCLIENTE\x1b[0m\n");
         printf("_____________________________________\n");
         printf("|[1] ALTA DE EMPLEADO               |\n");
         printf("|[2] BAJA DE EMPLEADO               |\n");
@@ -203,10 +205,10 @@ void menuEmpleado()
                 {
                     while (getchar() != '\n');
                     op = -1;
-                    system("pause");
-                    system("cls");
                 }
                 bajaEmpleadoArchivo(nombreArchivo, id);
+                system("pause");
+                system("cls");
             break;
             case 3:
                 printf("Ingrese la ID del empleado: ");
@@ -214,10 +216,10 @@ void menuEmpleado()
                 {
                     while (getchar() != '\n');
                     op = -1;
-                    system("pause");
-                    system("cls");
                 }
                 modificarEmpleadoArchivo(nombreArchivo, id);
+                system("pause");
+                system("cls");
             break;
             case 4:
                 mostrarArchivoEmpleado(nombreArchivo);
@@ -230,10 +232,10 @@ void menuEmpleado()
                 {
                     while (getchar() != '\n');
                     op = -1;
-                    system("pause");
-                    system("cls");
                 }
                 mostrarEmpleadosArchivoID(nombreArchivo, id);
+                system("pause");
+                system("cls");
             break;
             case 6:
                 listarEmpleadosSeleccionAlfabetica(nombreArchivo);

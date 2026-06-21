@@ -8,25 +8,29 @@ stEmpleado crearUnEmpleado(int id)
     char nombre[DIMTEXTO];
     char apellido[DIMTEXTO];
     stEmpleado aux;
-    id++;
     aux.id = id;
     aux.activo = 1;
-    printf("_____________________________________________\n ");
-    printf("Ingrese el dni del empleado: ");
+    printf("_____________________________________________\n");
+    printf(" Ingrese el dni del empleado: ");
     scanf(" %i", &aux.dni);
     int edad;
     do
     {
-        printf("ingrese edad del empleado: ");
+        printf(" ingrese edad del empleado: ");
         scanf(" %i", &edad);
     }
     while(edad < 18 || edad > 60);
+    if(edad >= 18 && edad <= 60)
+    {
+        aux.edad = edad;
+    }
     while ((c = getchar()) != '\n' && c != EOF);
-    printf("Ingrese el nombre y apellido del empleado: \n");
+
+    printf(" Ingrese el nombre y apellido del empleado: ");
     fgets(aux.nombreYApellido, DIMTEXTO, stdin);
     aux.nombreYApellido[strcspn(aux.nombreYApellido, "\n")] = '\0';
 //    while ((c = getchar()) != '\n' && c != EOF);
-    printf("ingrese puesto del empleado: ");
+    printf(" ingrese puesto del empleado: ");
     fgets(aux.puesto, DIMTEXTO, stdin);
     aux.puesto[strcspn(aux.puesto, "\n")] = '\0';
     printf("---------------------------------------------\n ");
@@ -47,14 +51,14 @@ void altaEmpleado(char nombreArchivo[])
         aux = crearUnEmpleado(i+1);
         if(verificacionEmpleado(archi, aux) == 0)
         {
-            printf("\n- - - ESTE EMPLEADO YA EXISTE - - -\n");
-        }
-        else
-        {
             fseek(archi, -sizeof(stEmpleado), SEEK_SET);
             fwrite(&aux, sizeof(stEmpleado), 1, archi);
             printf("\nEmpleado guardado correctamente.\n");
             mostrarEmpleado(aux);
+        }
+        else
+        {
+            printf("\n- - - ESTE EMPLEADO YA EXISTE - - -\n");
         }
         fclose(archi);
     }
@@ -216,9 +220,9 @@ void mostrarEmpleadosArchivoID(char nombre[], int id)
                 encontrado = 1;
             }
         }
-        if(encontrado = 0)
+        if(encontrado == 0)
         {
-            printf("\nERROR: Cliente no encontrado.\n");
+            printf("\nERROR: Empleado no encontrado o inactivo.\n");
         }
         fclose(archi);
     }

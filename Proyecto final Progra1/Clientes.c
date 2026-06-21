@@ -8,10 +8,10 @@ stCliente crearCliente(int id)
     stCliente aux;
     printf("_______________________________\n");
     aux.id = id;
-    printf("Ingrese el DNI del cliente: \n");
+    printf(" Ingrese el DNI del cliente: \n");
     scanf("%i", &aux.dni);
     while ((c = getchar()) != '\n' && c != EOF);
-    printf("Ingrese el nombre del cliente: \n");
+    printf(" Ingrese el nombre del cliente: \n");
     fgets(aux.nombre, DIMTEXTO, stdin);
     aux.nombre[strcspn(aux.nombre, "\n")] = '\0';
     //CREACION DE PRODUCTO
@@ -84,7 +84,7 @@ void bajaDeClienteDeArchivo(char nombre[], int id)
         }
         if(encontrado == 0)
         {
-            printf("\nERROR: Cliente no encontrado.\n");
+            printf("\nERROR: Cliente no encontrado o inactivo.\n");
         }
         fclose(archi);
     }
@@ -116,21 +116,21 @@ stCliente modificarCliente(FILE *archi, int id)
                 scanf(" %c", &op);
                 if(op == 's' || op == 'S')
                 {
-                    printf("\nIngrese el nuevo DNI: ");
+                    printf("\n Ingrese el nuevo DNI: ");
                     scanf("%i", &aux.dni);
                 }
                 printf("\nQuiere modificar el nombre? (s/n): ");
                 scanf(" %c", &op);
                 if(op == 's' || op == 'S')
                 {
-                    printf("\nIngrese el nuevo nombre: ");
+                    printf("\n Ingrese el nuevo nombre: ");
                     scanf(" %s", &aux.nombre);
                 }
                 printf("\nQuiere modificar el carrito? (s/n): ");
                 scanf(" %c", &op);
                 if(op == 's' || op == 'S')
                 {
-                    printf("\nIngrese el nuevo carrito: ");
+                    printf("\n Ingrese el nuevo carrito: ");
                     //LLAMAR FUNCION DE CREAR CARRITO !!!!
                 }
                 fseek(archi, -sizeof(stCliente), SEEK_CUR);
@@ -140,7 +140,7 @@ stCliente modificarCliente(FILE *archi, int id)
         }
         if(encontrado == 0)
         {
-            printf("\nERROR: Cliente no encontrado.\n");
+            printf("\nERROR: Cliente no encontrado o inactivo.\n");
         }
     return aux;
 }
@@ -155,11 +155,11 @@ void mostrarCliente(stCliente cliente)
     //LLAMAR A FUNCION DE MOSTRAR PRODUCTO
     if(cliente.activo == 1)
     {
-        printf("ESTADO: ACTIVO\n");
+        printf(" ESTADO: ACTIVO\n");
     }
     else
     {
-        printf("ESTADO: INACTIVO\n");
+        printf(" ESTADO: INACTIVO\n");
     }
     printf("-----------------------------\n");
 }
@@ -196,7 +196,7 @@ void mostrarClientesArchivoID(char nombre[], int id)
         }
         if(encontrado == 0)
         {
-            printf("\nERROR: Cliente no encontrado.\n");
+            printf("\nERROR: Cliente no encontrado o inactivo.\n");
         }
         fclose(archi);
     }
