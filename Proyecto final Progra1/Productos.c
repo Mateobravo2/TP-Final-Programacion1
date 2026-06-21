@@ -12,7 +12,7 @@ void cargarStProducto(char archivoProducto[])
         int i=0;
         char control='s';
 
-        while(fread(&prod, sizeof(stEmpleado), 1, archi) > 0)
+        while(fread(&prod, sizeof(stProducto), 1, archi) > 0)
         {
             i++;
         }
@@ -324,56 +324,4 @@ void mostrarProductoEconomico(char archivoProducto[])
         fclose(archi);
     }
 
-}
-///MENU
-
-void menuProducto(char archivoProducto[])
-{
-    FILE* archi= fopen(archivoProducto, "r+b");
-
-    if(archi!=NULL)
-    {
-        stProducto prod;
-
-        int controlP=0;
-        do
-        {
-            printf("------MENU PRODUCTO------\n");
-            printf("1. cargar producto\n");
-            printf("2. buscar producto\n");
-            printf("3. mostrar producto\n");
-            printf("4. mostrar productos economicos\n");
-            printf("0. salir\n");
-
-            scanf(" %i", &controlP);
-
-            switch(controlP)
-            {
-            case 1:
-                cargarStProducto(archivoProducto);
-                break;
-
-            case 2:
-                buscarProducto(archivoProducto);
-                break;
-
-            case 3:
-                mostrarProducto(archivoProducto);
-                break;
-
-            case 4:
-                mostrarProductoEconomico(archivoProducto);
-                break;
-
-            case 0:
-                printf("FIN DE LA EJECUCION...\n");
-                break;
-
-
-            }
-
-        }
-        while(controlP==0);
-        fclose(archi);
-    }
 }
