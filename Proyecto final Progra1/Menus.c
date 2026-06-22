@@ -95,6 +95,7 @@ void menuClientes()
         {
             while (getchar() != '\n');
             op = -1;
+            system("cls");
         }
         system("cls");
         switch(op)

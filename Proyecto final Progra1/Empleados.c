@@ -243,18 +243,23 @@ void listarEmpleadosSeleccionAlfabetica(char nombre[])
     {
         while(fread(&aux, sizeof(stEmpleado), 1, archi) > 0)
         {
-            if(aux.activo == 1) cantidadActivos++;
+            if(aux.activo == 1)
+            {
+                cantidadActivos++;
+            }
         }
         fclose(archi);
     }
 
-    if(cantidadActivos == 0) {
+    if(cantidadActivos == 0)
+    {
         printf("\nNo hay empleados activos para listar.\n");
     }
     lista = (stEmpleado*) realloc(lista, (sizeof(stEmpleado))* cantidadActivos);
     if(lista == NULL) {
         printf("Error al asignar memoria dinamica.\n");
     }
+    validos = pasarArchivoArreglo(nombre, lista, cantidadActivos);
     for(int i = 0; i < validos - 1; i++)
     {
         posMenor = i;
@@ -269,7 +274,7 @@ void listarEmpleadosSeleccionAlfabetica(char nombre[])
         lista[posMenor] = lista[i];
         lista[i] = temp;
     }
-    printf("\n--- LISTADO ALFABETICO - ARREGLO DINAMICO (SELECCION) ---\n");
+    printf("\n--- LISTADO ALFABETICO ---\n");
     for(int i = 0; i < validos; i++)
     {
         mostrarEmpleado(lista[i]);
