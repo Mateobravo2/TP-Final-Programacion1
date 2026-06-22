@@ -27,7 +27,7 @@
 1782058280 source:c:\users\chori\onedrive\documentos\github\proyecto-final-progra1\proyecto final progra1\productos.c
 	"Productos.h"
 
-1782135316 source:d:\facultad\programacion1\tpfinal\github\tp-final-programacion1\proyecto final progra1\clientes.c
+1782148901 source:d:\facultad\programacion1\tpfinal\github\tp-final-programacion1\proyecto final progra1\clientes.c
 	"Clientes.h"
 	<string.h>
 
@@ -38,9 +38,11 @@
 1782133941 d:\facultad\programacion1\tpfinal\github\tp-final-programacion1\proyecto final progra1\productos.h
 	<stdio.h>
 
-1782080593 source:d:\facultad\programacion1\tpfinal\github\tp-final-programacion1\proyecto final progra1\empleados.c
+1782145433 source:d:\facultad\programacion1\tpfinal\github\tp-final-programacion1\proyecto final progra1\empleados.c
 	"Empleados.h"
 	<string.h>
+	<stdio.h>
+	<stdlib.h>
 
 1782073048 d:\facultad\programacion1\tpfinal\github\tp-final-programacion1\proyecto final progra1\empleados.h
 	<stdio.h>
@@ -53,7 +55,7 @@
 
 1782058627 d:\facultad\programacion1\tpfinal\github\tp-final-programacion1\proyecto final progra1\menus.h
 
-1782135454 source:d:\facultad\programacion1\tpfinal\github\tp-final-programacion1\proyecto final progra1\menus.c
+1782149109 source:d:\facultad\programacion1\tpfinal\github\tp-final-programacion1\proyecto final progra1\menus.c
 	"Menus.h"
 	"Clientes.h"
 	"Empleados.h"
@@ -61,7 +63,7 @@
 	<string.h>
 	<windows.h>
 
-1782135140 source:d:\facultad\programacion1\tpfinal\github\tp-final-programacion1\proyecto final progra1\productos.c
+1782139127 source:d:\facultad\programacion1\tpfinal\github\tp-final-programacion1\proyecto final progra1\productos.c
 	"Productos.h"
 	<string.h>
 	<stdio.h>
