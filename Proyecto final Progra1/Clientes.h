@@ -11,7 +11,6 @@ typedef struct
     int id;
     int dni;
     char nombre[DIMTEXTO];
-    stProducto carrito[DIMTEXTO];
     int activo;
 }stCliente;
 
@@ -24,6 +23,8 @@ void bajaDeClienteDeArchivo(char nombre[], int id);
 //MODIFICACION
 void modificarClienteDeArchivo(char nombre[], int id);
 stCliente modificarCliente(FILE *archi, int id);
+void hacerVenta(char nombre[], char archivoProducto[], int id);
+void menuVenta(stCliente comprador, char archivoProducto[]);
 //CONSULTA
 void mostrarCliente(stCliente cliente);
 void mostrarArchivoClientes(char nombre[]);

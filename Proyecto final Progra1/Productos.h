@@ -1,7 +1,9 @@
 #ifndef PRODUCTOS_H_INCLUDED
 #define PRODUCTOS_H_INCLUDED
 #include <stdio.h>
+#include <string.h>
 #define DIMTEXTO 30
+#include "pila.h"
 
 typedef struct
 {
@@ -15,7 +17,7 @@ typedef struct
 } stProducto;
 
 //ALTA
-void cargarStProducto(char archivoProducto[]);
+void cargarStProducto(char archivoProducto[], Pila* economico);
 stProducto cargaProducto(int i, int stock);
 //BAJA Y MODIFICACION
 stProducto menuProdElegido(stProducto prod);
@@ -26,6 +28,6 @@ void buscarProducto(char archivoProducto[]);
 void buscarPorNombre(FILE* archi);
 void buscarPorId(FILE* archi);
 //LISTADO
-void mostrarProductoEconomico(char archivoProducto[]);
+void mostrarProductoEconomico(char archivoProducto[], Pila cant);
 
 #endif // PRODUCTOS_H_INCLUDED

@@ -1,15 +1,19 @@
 #include "Menus.h"
 #include "Clientes.h"
 #include "Empleados.h"
+#include "Productos.h"
 #include <stdio.h>
 #include <string.h>
 #include <windows.h>
+#include "pila.h"
 
 #define DIMTEXTO 30
 
 void menuPrincipal()
 {
     int op;
+
+
     do
     {
         printf("Ingrese una opcion:\n");
@@ -77,6 +81,7 @@ void menuClientes()
 {
     int op, id;
     char nombre[DIMTEXTO] = "clientes.bin";
+    char archivoProducto[]="producto.bin";
     do
     {
         printf("\x1b[34mCLIENTE\x1b[0m\n");
@@ -89,6 +94,7 @@ void menuClientes()
         printf("|[5] MOSTRAR CLIENTE POR ID         |\n");
         printf("|[6] MOSTRAR CLIENTE A-Z            |\n");
         printf("|[7] MOSTRAR CLIENTE ORDEN POR DNI  |\n");
+        printf("|[8] HACER COMPRA                   |\n");
         printf("|\x1b[31m[0]          SALIR\x1b[0m                 |\n");
         printf("-------------------------------------\n");
         if (scanf("%i", &op) != 1)
@@ -125,8 +131,6 @@ void menuClientes()
                 system("cls");
             }
             bajaDeClienteDeArchivo(nombre, id);
-            system("pause");
-            system("cls");
             break;
         case 3:
             printf("Ingrese el ID del cliente: ");
@@ -135,8 +139,6 @@ void menuClientes()
                 printf("\nERROR: Ingrese un valor valido.\n");
                 while (getchar() != '\n');
                 op = -1;
-                system("pause");
-                system("cls");
             }
             modificarClienteDeArchivo(nombre, id);
             system("pause");
@@ -154,10 +156,9 @@ void menuClientes()
                 printf("\nERROR: Ingrese un valor valido.\n");
                 while (getchar() != '\n');
                 op = -1;
-                system("pause");
-                system("cls");
             }
             mostrarClientesArchivoID(nombre, id);
+
             system("pause");
             system("cls");
             break;
@@ -171,6 +172,11 @@ void menuClientes()
             system("pause");
             system("cls");
             break;
+        case 8:
+            hacerVenta(nombre,archivoProducto,id);
+            system("pause");
+            system("cls");
+
         }
     }
     while(op != 0);
@@ -215,8 +221,6 @@ void menuEmpleado()
                 system("cls");
             }
             bajaEmpleadoArchivo(nombreArchivo, id);
-            system("pause");
-            system("cls");
             break;
         case 3:
             printf("Ingrese la ID del empleado: ");
@@ -228,8 +232,6 @@ void menuEmpleado()
                 system("cls");
             }
             modificarEmpleadoArchivo(nombreArchivo, id);
-            system("pause");
-            system("cls");
             break;
         case 4:
             mostrarArchivoEmpleado(nombreArchivo);
@@ -246,8 +248,6 @@ void menuEmpleado()
                 system("cls");
             }
             mostrarEmpleadosArchivoID(nombreArchivo, id);
-            system("pause");
-            system("cls");
             break;
         case 6:
             listarEmpleadosSeleccionAlfabetica(nombreArchivo);
@@ -276,41 +276,60 @@ void menuEmpleado()
 void menuProducto()
 {
     char archivoProducto[]="producto.bin";
-    int controlP=0;
+
+    FILE* archi= fopen(archivoProducto, "ab");
+    fclose(archi);
+
+     Pila baratos;
+     inicpila(&baratos);
+
+        int controlP;
         do
         {
             printf("------MENU PRODUCTO------\n");
-            printf("1. cargar producto\n");
-            printf("2. buscar producto\n");
-            printf("3. mostrar producto\n");
-            printf("4. mostrar productos economicos\n");
-            printf("0. salir\n");
+            printf("|1|. CARGAR PRODUCTO\n");
+            printf("|2|. BUSCAR PRODUCTO\n");
+            printf("|3|. MOSTRAR PRODUCTO\n");
+            printf("|4|. MOSTRAR PRODUCTOS ECONOMICOS\n");
+            printf("|0|. VOLVER AL MENU PRINCIPAL\n");
 
-            scanf(" %i", &controlP);
+            scanf("%i", &controlP);
+
 
             switch(controlP)
             {
             case 1:
-                cargarStProducto(archivoProducto);
+                cargarStProducto(archivoProducto, &baratos);
+                system("pause");
+                system("cls");
                 break;
 
             case 2:
                 buscarProducto(archivoProducto);
+                system("pause");
+                system("cls");
                 break;
 
             case 3:
                 mostrarProducto(archivoProducto);
+                system("pause");
+                system("cls");
                 break;
 
             case 4:
-                mostrarProductoEconomico(archivoProducto);
+                mostrarProductoEconomico(archivoProducto, baratos);
+                system("pause");
+                system("cls");
                 break;
 
             case 0:
-                printf("FIN DE LA EJECUCION...\n");
+                printf("VOLVIENDO AL MENU...\n");
+                system("pause");
                 break;
             }
 
         }
         while(controlP != 0);
+
+
 }
