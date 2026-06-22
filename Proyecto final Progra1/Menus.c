@@ -313,12 +313,10 @@ void menuProducto()
                 printf("VOLVIENDO AL MENU...\n");
                 system("pause");
                 break;
-
-
             }
 
         }
-        while(controlP==0);
+        while(controlP != 0);
 
 
 }

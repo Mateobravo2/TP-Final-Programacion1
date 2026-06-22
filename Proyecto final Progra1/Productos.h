@@ -17,7 +17,7 @@ typedef struct
 
 //ALTA
 void cargarStProducto(char archivoProducto[]);
-stProducto cargaProducto();
+stProducto cargaProducto(int i, int stock);
 //BAJA Y MODIFICACION
 stProducto menuProdElegido(stProducto prod);
 //CONSULTA

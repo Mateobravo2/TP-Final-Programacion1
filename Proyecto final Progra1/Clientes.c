@@ -8,10 +8,10 @@ stCliente crearCliente(int id)
     stCliente aux;
     printf("_______________________________\n");
     aux.id = id;
-    printf(" Ingrese el DNI del cliente: \n");
+    printf(" Ingrese el DNI del cliente: ");
     scanf("%i", &aux.dni);
     while ((c = getchar()) != '\n' && c != EOF);
-    printf(" Ingrese el nombre del cliente: \n");
+    printf(" Ingrese el nombre del cliente: ");
     fgets(aux.nombre, DIMTEXTO, stdin);
     aux.nombre[strcspn(aux.nombre, "\n")] = '\0';
     //CREACION DE PRODUCTO
@@ -24,7 +24,7 @@ void altaClientesArchivo(char nombre[])
 {
     int i = 0;
     stCliente aux;
-    FILE *archi = fopen(nombre, "a+b");
+    FILE *archi = fopen(nombre, "r+b");
     if(archi != NULL)
     {
         while(fread(&aux, sizeof(stCliente), 1, archi) > 0)
@@ -38,7 +38,6 @@ void altaClientesArchivo(char nombre[])
         }
         else
         {
-            fseek(archi, -sizeof(stCliente), SEEK_CUR);
             fwrite(&aux, sizeof(stCliente), 1, archi);
             printf("\nCliente guardado correctamente.\n");
             mostrarCliente(aux);
