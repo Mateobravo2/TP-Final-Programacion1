@@ -61,8 +61,10 @@
 	<string.h>
 	<windows.h>
 
-1782079543 source:d:\facultad\programacion1\tpfinal\github\tp-final-programacion1\proyecto final progra1\productos.c
+1782083586 source:d:\facultad\programacion1\tpfinal\github\tp-final-programacion1\proyecto final progra1\productos.c
 	"Productos.h"
+	<string.h>
+	<stdio.h>
 
 1782079628 source:c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\clientes.c
 	"Clientes.h"
