@@ -6,12 +6,14 @@
 ///ALTA PRODUCTO
 void cargarStProducto(char archivoProducto[])
 {
+
     stProducto prod;
+    int i=0;
     FILE* archi = fopen(archivoProducto, "r+b");
     if(archi!=NULL)
     {
 
-        int i=0;
+
         char control='s';
         while(fread(&prod, sizeof(stProducto), 1, archi) > 0)
         {
@@ -27,6 +29,7 @@ void cargarStProducto(char archivoProducto[])
 
             scanf(" %c", &control);
         }
+        fclose(archi);
     }
 }
 

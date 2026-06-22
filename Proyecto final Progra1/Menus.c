@@ -266,6 +266,9 @@ void menuProducto()
 {
     char archivoProducto[]="producto.bin";
 
+    FILE* archi= fopen(archivoProducto, "ab");
+    fclose(archi);
+
 
         int controlP=0;
         do
