@@ -6,17 +6,15 @@
 //ALTA CLIENTE
 stCliente crearCliente(int id)
 {
-    int c;
     stCliente aux;
     printf("_______________________________\n");
     aux.id = id;
     printf("Ingrese el DNI del cliente: ");
     scanf("%i", &aux.dni);
-    while ((c = getchar()) != '\n' && c != EOF);
+    while(getchar() != '\n');
     printf(" Ingrese el nombre del cliente: ");
     fgets(aux.nombre, DIMTEXTO, stdin);
     aux.nombre[strcspn(aux.nombre, "\n")] = '\0';
-    //CREACION DE PRODUCTO
     aux.activo = 1;
     printf("-------------------------------\n");
     return aux;
@@ -124,15 +122,16 @@ stCliente modificarCliente(FILE *archi, int id)
             scanf(" %c", &op);
             if(op == 's' || op == 'S')
             {
+                while(getchar() != '\n');
                 printf("\n Ingrese el nuevo nombre: ");
-                scanf(" %s", &aux.nombre);
+                fgets(aux.nombre, DIMTEXTO, stdin);
+                aux.nombre[strcspn(aux.nombre, "\n")] = '\0';
             }
             printf("\nQuiere modificar el carrito? (s/n): ");
             scanf(" %c", &op);
             if(op == 's' || op == 'S')
             {
                 printf("\n Ingrese el nuevo carrito: ");
-                //LLAMAR FUNCION DE CREAR CARRITO !!!!
             }
             fseek(archi, -sizeof(stCliente), SEEK_CUR);
             fwrite(&aux, sizeof(stCliente), 1, archi);
@@ -153,7 +152,6 @@ void mostrarCliente(stCliente cliente)
     printf("____________________________\n");
     printf(" DNI %i\n", cliente.dni);
     printf(" NOMBRE: %s\n", cliente.nombre);
-    //LLAMAR A FUNCION DE MOSTRAR PRODUCTO
     if(cliente.activo == 1)
     {
         printf(" ESTADO: ACTIVO\n");
@@ -222,19 +220,14 @@ void hacerVenta(char nombre[], char archivoProducto[], int id)
         {
             if(aux.dni == comprador.dni)
             {
-
                 mostrarProducto(archivoProducto);
                 menuVenta(aux, archivoProducto);
                 bandera=1;
-
             }
         }
-
         fclose(archi);
         fclose(archio);
     }
-
-
 }
 
 void menuVenta(stCliente comprador, char archivoProducto[])
@@ -245,17 +238,15 @@ void menuVenta(stCliente comprador, char archivoProducto[])
     int cant;
     int bandera=0;
     char band='s';
-
     FILE* archi= fopen(archivoProducto, "r+b");
-
     if(archi!=NULL)
     {
         while(band=='s')
         {
-
-
+            while(getchar() != '\n');
             printf("QUE DESEA COMPRAR?\n");
-            scanf(" %s", &pro);
+            fgets(pro, DIMTEXTO, stdin);
+            pro[strcspn(pro, "\n")] = '\0';
             while(fread(&prod, sizeof(stProducto),1, archi) && bandera==0)
             {
                 if(strcmpi(pro, prod.nombre)==0)
@@ -275,7 +266,6 @@ void menuVenta(stCliente comprador, char archivoProducto[])
                     {
                         printf("error, no existe esa cantidad de productos\n");
                     }
-
                 }
                 else
                 {

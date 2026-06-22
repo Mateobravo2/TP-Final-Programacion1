@@ -13,7 +13,6 @@ typedef struct
     int stock;
     int economico;
     int activo;
-
 } stProducto;
 
 //ALTA

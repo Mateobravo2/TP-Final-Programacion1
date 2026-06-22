@@ -6,48 +6,45 @@
 ///ALTA PRODUCTO
 void cargarStProducto(char archivoProducto[], Pila* economico)
 {
-
     stProducto prod;
-    int i=0;
-    int j=0;
+    int i = 0, j = 0, stock = 0;
     FILE* archi = fopen(archivoProducto, "r+b");
     if(archi!=NULL)
     {
-
-
         char control='s';
         while(fread(&prod, sizeof(stProducto), 1, archi) > 0)
         {
             i++;
+            if(prod.economico == 1)
+            {
+                stock++;
+            }
         }
-        while(control =='s')
+        while(control == 's')
         {
-            prod= cargaProducto(i+1, prod.stock);
-            if(prod.economico=1)
+            prod = cargaProducto(i+1, stock);
+            if(prod.economico == 1)
             {
                 j++;
                 apilar(economico, j);
-
             }
-
             fwrite(&prod, sizeof(stProducto), 1, archi);
-
             printf("desea seguir cargando datos? s/n\n");
-
             scanf(" %c", &control);
         }
-        *economico;
         fclose(archi);
     }
 }
 
 
-stProducto cargaProducto(int i, int sto)
+stProducto cargaProducto(int i, int stock)
 {
     stProducto aux;
     aux.id= i;
     printf("ingrese el nombre del producto\n");
-    scanf(" %s", &aux.nombre);
+    while(getchar() != '\n');
+    fgets(aux.nombre, DIMTEXTO, stdin);
+    aux.nombre[strcspn(aux.nombre, "\n")] = '\0';
     printf("ingrese el precio del producto\n");
     scanf(" %f", &aux.precio);
     if(aux.precio<2000)
@@ -144,7 +141,7 @@ void buscarPorNombre(FILE* archi)
 
         while(fread(&prod, sizeof(stProducto), 1, archi)>0 && banderaP==0)
         {
-            if (strcmpi(nombreAux,prod.nombre)==0 && prod.activo==1)
+            if (strcmpi(nombreAux,prod.nombre) == 0 && prod.activo==1)
             {
                 mostrarP(prod);
                 printf("desea ingresar al menu del producto? s/n\n");
@@ -236,15 +233,15 @@ stProducto menuProdElegido(stProducto prod)
         printf("|3|. MODIFICAR STOCK\n");
         printf("|4|. ELIMINAR PRODUCTO\n");
         printf("|0|. SALIR\n");
-
         scanf("%i", &opp);
         system("cls");
-
         switch(opp)
         {
         case 1:
+            while(getchar() != '\n');
             printf("escriba el nuevo nombre\n");
-            scanf(" %s", &prod.nombre);
+            fgets(prod.nombre, DIMTEXTO, stdin);
+            prod.nombre[strcspn(prod.nombre, "\n")] = '\0';
             break;
         case 2:
             printf("que precio quiere seleccionar para %s\n", prod.nombre);
@@ -264,7 +261,6 @@ stProducto menuProdElegido(stProducto prod)
             }
             prod.precio= aux.precio;
             break;
-
         case 3:
             printf("cuantas unidades va querer en %s\n", prod.nombre);
             scanf("%i", &aux.stock);
@@ -275,15 +271,13 @@ stProducto menuProdElegido(stProducto prod)
             }
             prod.stock= aux.stock;
             break;
-
         case 4:
-
             prod.activo=0;
             printf("el archivo a sido eliminado.\n");
+            opp = 0;
             break;
         }
-    }while(opp==0);
-
+    }while(opp != 0);
     return prod;
 }
 

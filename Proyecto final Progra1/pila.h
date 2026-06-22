@@ -1,17 +1,23 @@
 #ifndef PILA_H_INCLUDED
 #define PILA_H_INCLUDED
+#include <stdio.h>
+#include <stdlib.h>
+#define Pila struct _Pila
+#define P_Pila struct _Pila *
 
-typedef struct Pila {
-    int valores[50];
+struct _Pila
+{
+    int *valores;
     int postope;
-} Pila;
+};
 
-void inicpila(Pila* p);
-void apilar(Pila* p, int dato);
-int desapilar(Pila* p);
-int tope(Pila* p);
-int pilavacia(Pila* p);
-void leer(Pila* p);
-void mostrar(Pila* p);
+void inicpila(P_Pila p);
+void apilar(P_Pila p, int dato);
+int desapilar(P_Pila p);
+int tope(P_Pila p);
+int pilavacia(P_Pila p);
+void leer (P_Pila p);
+void mostrar(P_Pila p);
+void freepila(P_Pila p);
 
-#endif // PILA_H_INCLUDED
+#endif

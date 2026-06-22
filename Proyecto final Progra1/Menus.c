@@ -55,8 +55,7 @@ void menuPrincipal()
             printf("- - - FINALIZANDO EL PROGRAMA - - -\n");
             break;
         }
-    }
-    while(op != 0);
+    }while(op != 0);
 }
 
 void barraCarga()
@@ -81,7 +80,6 @@ void menuClientes()
 {
     int op, id;
     char nombre[DIMTEXTO] = "clientes.bin";
-    char archivoProducto[]="producto.bin";
     do
     {
         printf("\x1b[34mCLIENTE\x1b[0m\n");
@@ -94,7 +92,6 @@ void menuClientes()
         printf("|[5] MOSTRAR CLIENTE POR ID         |\n");
         printf("|[6] MOSTRAR CLIENTE A-Z            |\n");
         printf("|[7] MOSTRAR CLIENTE ORDEN POR DNI  |\n");
-        printf("|[8] HACER COMPRA                   |\n");
         printf("|\x1b[31m[0]          SALIR\x1b[0m                 |\n");
         printf("-------------------------------------\n");
         if (scanf("%i", &op) != 1)
@@ -104,82 +101,76 @@ void menuClientes()
             system("cls");
         }
         system("cls");
-        switch(op)
-        {
-        default:
-            printf("~ ~ ~ INGRESE UNA OPCION VALIDA ~ ~ ~\n");
-            system("pause");
-            system("cls");
-            break;
-        case 0:
-            printf("- - - VOLVIENDO AL MENU PRINCIPAL - - -");
-            barraCarga();
-            break;
-        case 1:
-            altaClientesArchivo(nombre);
-            system("pause");
-            system("cls");
-            break;
-        case 2:
-            printf("Ingrese el ID del cliente: ");
-            if (scanf("%i", &id) != 1)
+            switch(op)
             {
-                printf("\nERROR: Ingrese un valor valido.\n");
-                while (getchar() != '\n');
-                op = -1;
+            default:
+                printf("~ ~ ~ INGRESE UNA OPCION VALIDA ~ ~ ~\n");
                 system("pause");
                 system("cls");
-            }
-            bajaDeClienteDeArchivo(nombre, id);
-            break;
-        case 3:
-            printf("Ingrese el ID del cliente: ");
-            if (scanf("%i", &id) != 1)
-            {
-                printf("\nERROR: Ingrese un valor valido.\n");
-                while (getchar() != '\n');
-                op = -1;
-            }
-            modificarClienteDeArchivo(nombre, id);
-            system("pause");
-            system("cls");
-            break;
-        case 4:
-            mostrarArchivoClientes(nombre);
-            system("pause");
-            system("cls");
-            break;
-        case 5:
-            printf("Ingrese el ID del cliente: ");
-            if (scanf("%i", &id) != 1)
-            {
-                printf("\nERROR: Ingrese un valor valido.\n");
-                while (getchar() != '\n');
-                op = -1;
-            }
-            mostrarClientesArchivoID(nombre, id);
+                break;
+            case 0:
+                printf("- - - VOLVIENDO AL MENU PRINCIPAL - - -");
+                barraCarga();
+                break;
+            case 1:
+                altaClientesArchivo(nombre);
+                system("pause");
+                system("cls");
+                break;
+            case 2:
+                printf("Ingrese el ID del cliente: ");
+                if (scanf("%i", &id) != 1)
+                {
+                    printf("\nERROR: Ingrese un valor valido.\n");
+                    while (getchar() != '\n');
+                    op = -1;
+                    system("pause");
+                    system("cls");
+                }
+                bajaDeClienteDeArchivo(nombre, id);
+                break;
+            case 3:
+                printf("Ingrese el ID del cliente: ");
+                if (scanf("%i", &id) != 1)
+                {
+                    printf("\nERROR: Ingrese un valor valido.\n");
+                    while (getchar() != '\n');
+                    op = -1;
+                }
+                modificarClienteDeArchivo(nombre, id);
+                system("pause");
+                system("cls");
+                break;
+            case 4:
+                mostrarArchivoClientes(nombre);
+                system("pause");
+                system("cls");
+                break;
+            case 5:
+                printf("Ingrese el ID del cliente: ");
+                if (scanf("%i", &id) != 1)
+                {
+                    printf("\nERROR: Ingrese un valor valido.\n");
+                    while (getchar() != '\n');
+                    op = -1;
+                }
+                mostrarClientesArchivoID(nombre, id);
 
-            system("pause");
-            system("cls");
-            break;
-        case 6:
-            listarClientesSeleccionAlfabetica(nombre);
-            system("pause");
-            system("cls");
-            break;
-        case 7:
-            listarClientesInsercionDni(nombre);
-            system("pause");
-            system("cls");
-            break;
-        case 8:
-            hacerVenta(nombre,archivoProducto,id);
-            system("pause");
-            system("cls");
-
+                system("pause");
+                system("cls");
+                break;
+            case 6:
+                listarClientesSeleccionAlfabetica(nombre);
+                system("pause");
+                system("cls");
+                break;
+            case 7:
+                listarClientesInsercionDni(nombre);
+                system("pause");
+                system("cls");
+                break;
         }
-    }
-    while(op != 0);
+    }while(op != 0);
 }
 
 void menuEmpleado()
@@ -269,21 +260,17 @@ void menuEmpleado()
             system("cls");
             break;
         }
-    }
-    while(op != 0);
+    }while(op != 0);
 }
 
 void menuProducto()
 {
+    int controlP;
     char archivoProducto[]="producto.bin";
-
     FILE* archi= fopen(archivoProducto, "ab");
     fclose(archi);
-
-     Pila baratos;
-     inicpila(&baratos);
-
-        int controlP;
+    Pila baratos;
+    inicpila(&baratos);
         do
         {
             printf("------MENU PRODUCTO------\n");
@@ -327,9 +314,5 @@ void menuProducto()
                 system("pause");
                 break;
             }
-
-        }
-        while(controlP != 0);
-
-
+        }while(controlP != 0);
 }

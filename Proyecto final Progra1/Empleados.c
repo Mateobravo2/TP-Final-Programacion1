@@ -27,11 +27,10 @@ stEmpleado crearUnEmpleado(int id)
         aux.edad = edad;
     }
     while ((c = getchar()) != '\n' && c != EOF);
-
     printf(" Ingrese el nombre y apellido del empleado: ");
     fgets(aux.nombreYApellido, DIMTEXTO, stdin);
     aux.nombreYApellido[strcspn(aux.nombreYApellido, "\n")] = '\0';
-//    while ((c = getchar()) != '\n' && c != EOF);
+    while (getchar() != '\n');
     printf(" ingrese puesto del empleado: ");
     fgets(aux.puesto, DIMTEXTO, stdin);
     aux.puesto[strcspn(aux.puesto, "\n")] = '\0';
@@ -142,8 +141,8 @@ stEmpleado modificarEmpleado(FILE *archi, int id)
                 scanf(" %c", &op);
                 if(op == 's' || op == 'S')
                 {
-                    printf("\nIngrese el nuevo nombre y apellido: ");
                     while(getchar() != '\n');
+                    printf("\nIngrese el nuevo nombre y apellido: ");
                     fgets(aux.nombreYApellido, DIMTEXTO, stdin);
                     aux.nombreYApellido[strcspn(aux.nombreYApellido, "\n")] = '\0';
                 }
@@ -158,8 +157,8 @@ stEmpleado modificarEmpleado(FILE *archi, int id)
                 scanf(" %c", &op);
                 if(op == 's' || op == 'S')
                 {
-                    printf("\nIngrese el nuevo puesto: ");
                     while(getchar() != '\n');
+                    printf("\nIngrese el nuevo puesto: ");
                     fgets(aux.puesto, DIMTEXTO, stdin);
                     aux.puesto[strcspn(aux.puesto, "\n")] = '\0';
                 }
@@ -250,7 +249,6 @@ void listarEmpleadosSeleccionAlfabetica(char nombre[])
         }
         fclose(archi);
     }
-
     if(cantidadActivos == 0)
     {
         printf("\nNo hay empleados activos para listar.\n");
