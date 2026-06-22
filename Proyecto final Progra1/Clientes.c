@@ -214,7 +214,11 @@ void hacerVenta(char nombre[], char archivoProducto[], int id)
     if(archi!=NULL || archio!=NULL)
     {
         printf("ingrese su numero de dni:\n");
-        scanf("%i", &aux.dni);
+        while (scanf("%i", &aux.dni) != 1)
+        {
+            printf("dato invalido. ingrese nuevamente:\n");
+            while(getchar() != '\n');
+        }
 
         while(fread(&comprador, sizeof(stCliente),1, archio) && bandera==0)
         {
@@ -252,7 +256,12 @@ void menuVenta(stCliente comprador, char archivoProducto[])
                 if(strcmpi(pro, prod.nombre)==0)
                 {
                     printf("CUANTOS DESEA COMPRAR?\n");
-                    scanf("%i", &cant);
+                    while (scanf("%i", &cant) != 1)
+                    {
+                        printf("dato invalido. ingrese nuevamente:\n");
+                        while(getchar() != '\n');
+                    }
+
                     if(cant<=prod.stock)
                     {
                         fseek(archi, sizeof(stProducto)*(-1), SEEK_CUR);
@@ -272,11 +281,11 @@ void menuVenta(stCliente comprador, char archivoProducto[])
                     printf("no existe ese producto\n");
                 }
             }
-                printf("desea hacer otra compra? s/n\n");
-                scanf(" %c", &band);
-                fseek(archi, 0, SEEK_SET);
-                system("cls");
-                bandera=0;
+            printf("desea hacer otra compra? s/n\n");
+            scanf(" %c", &band);
+            fseek(archi, 0, SEEK_SET);
+            system("cls");
+            bandera=0;
         }
         fclose(archi);
     }

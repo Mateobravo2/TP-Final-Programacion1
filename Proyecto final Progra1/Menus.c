@@ -12,7 +12,9 @@
 void menuPrincipal()
 {
     int op;
-
+    int i=0;
+    Pila contador;
+    inicpila(&contador);
 
     do
     {
@@ -28,6 +30,7 @@ void menuPrincipal()
             while (getchar() != '\n');
             op = -1;
         }
+        apilar(&contador,i++);
         system("cls");
         switch(op)
         {
@@ -53,8 +56,14 @@ void menuPrincipal()
             break;
         case 0:
             printf("- - - FINALIZANDO EL PROGRAMA - - -\n");
+            if(!pilavacia(&contador))
+            {
+              printf("veces ejecutadas: %i", tope(&contador));
+            }
+
             break;
         }
+
     }while(op != 0);
 }
 
