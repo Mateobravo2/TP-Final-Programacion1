@@ -124,6 +124,8 @@ void menuClientes()
                 system("cls");
             }
             bajaDeClienteDeArchivo(nombre, id);
+            system("pause");
+            system("cls");
             break;
         case 3:
             printf("Ingrese el ID del cliente: ");
@@ -132,6 +134,8 @@ void menuClientes()
                 printf("\nERROR: Ingrese un valor valido.\n");
                 while (getchar() != '\n');
                 op = -1;
+                system("pause");
+                system("cls");
             }
             modificarClienteDeArchivo(nombre, id);
             system("pause");
@@ -149,6 +153,8 @@ void menuClientes()
                 printf("\nERROR: Ingrese un valor valido.\n");
                 while (getchar() != '\n');
                 op = -1;
+                system("pause");
+                system("cls");
             }
             mostrarClientesArchivoID(nombre, id);
             system("pause");
@@ -208,6 +214,8 @@ void menuEmpleado()
                 system("cls");
             }
             bajaEmpleadoArchivo(nombreArchivo, id);
+            system("pause");
+            system("cls");
             break;
         case 3:
             printf("Ingrese la ID del empleado: ");
@@ -219,6 +227,8 @@ void menuEmpleado()
                 system("cls");
             }
             modificarEmpleadoArchivo(nombreArchivo, id);
+            system("pause");
+            system("cls");
             break;
         case 4:
             mostrarArchivoEmpleado(nombreArchivo);
@@ -235,6 +245,8 @@ void menuEmpleado()
                 system("cls");
             }
             mostrarEmpleadosArchivoID(nombreArchivo, id);
+            system("pause");
+            system("cls");
             break;
         case 6:
             listarEmpleadosSeleccionAlfabetica(nombreArchivo);
