@@ -19,7 +19,7 @@ stCliente crearCliente(int id)
     printf("-------------------------------\n");
     return aux;
 }
-//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+
 void altaClientesArchivo(char nombre[])
 {
     int i = 0;

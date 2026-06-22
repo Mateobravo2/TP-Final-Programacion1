@@ -263,9 +263,7 @@ void menuEmpleado()
 void menuProducto()
 {
     char archivoProducto[]="producto.bin";
-
-
-        int controlP=0;
+    int controlP=0;
         do
         {
             printf("------MENU PRODUCTO------\n");
@@ -302,6 +300,4 @@ void menuProducto()
 
         }
         while(controlP != 0);
-
-
 }
