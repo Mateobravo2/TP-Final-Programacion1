@@ -66,7 +66,7 @@
 	<string.h>
 	<stdio.h>
 
-1782082567 source:c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\clientes.c
+1782144095 source:c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\clientes.c
 	"Clientes.h"
 	<string.h>
 
@@ -74,11 +74,12 @@
 	<stdio.h>
 	"Productos.h"
 
-1782093985 c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\productos.h
+1782145669 c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\productos.h
 	<stdio.h>
 	<string.h>
+	"pila.h"
 
-1782082567 source:c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\empleados.c
+1782144095 source:c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\empleados.c
 	"Empleados.h"
 	<string.h>
 
@@ -93,7 +94,7 @@
 
 1782079628 c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\menus.h
 
-1782094378 source:c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\menus.c
+1782145631 source:c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\menus.c
 	"Menus.h"
 	"Clientes.h"
 	"Empleados.h"
@@ -101,10 +102,17 @@
 	<stdio.h>
 	<string.h>
 	<windows.h>
+	"pila.h"
 
-1782093626 source:c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\productos.c
+1782145756 source:c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\productos.c
 	"Productos.h"
 	<string.h>
 	<stdio.h>
 	<stdlib.h>
+
+1770385876 source:c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\pila.c
+	<stdio.h>
+	"pila.h"
+
+1770385876 c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\pila.h
 

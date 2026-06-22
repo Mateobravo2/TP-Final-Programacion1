@@ -4,11 +4,12 @@
 #include <stdlib.h>
 
 ///ALTA PRODUCTO
-void cargarStProducto(char archivoProducto[])
+void cargarStProducto(char archivoProducto[], Pila* economico)
 {
 
     stProducto prod;
     int i=0;
+    int j=0;
     FILE* archi = fopen(archivoProducto, "r+b");
     if(archi!=NULL)
     {
@@ -21,7 +22,13 @@ void cargarStProducto(char archivoProducto[])
         }
         while(control =='s')
         {
-            prod= cargaProducto(i+1);
+            prod= cargaProducto(i+1, prod.stock);
+            if(prod.economico=1)
+            {
+                j++;
+                apilar(economico, j);
+
+            }
 
             fwrite(&prod, sizeof(stProducto), 1, archi);
 
@@ -29,12 +36,13 @@ void cargarStProducto(char archivoProducto[])
 
             scanf(" %c", &control);
         }
+        *economico;
         fclose(archi);
     }
 }
 
 
-stProducto cargaProducto(int i)
+stProducto cargaProducto(int i, int sto)
 {
     stProducto aux;
     aux.id= i;
@@ -92,7 +100,7 @@ void buscarProducto(char archivoProducto[])
     FILE* archi= fopen(archivoProducto, "r+b");
     if(archi!=NULL)
     {
-        int controlP=0;
+        int controlP;
         do
         {
             printf("-------MENU-------\n");
@@ -218,7 +226,7 @@ void buscarPorId(FILE* archi)
 
 stProducto menuProdElegido(stProducto prod)
 {
-    int opp=0;
+    int opp;
     stProducto aux;
     do
     {
@@ -280,7 +288,7 @@ stProducto menuProdElegido(stProducto prod)
 }
 
 //LISTADO ECONOMICO
-void mostrarProductoEconomico(char archivoProducto[])
+void mostrarProductoEconomico(char archivoProducto[], Pila cant)
 {
     stProducto prod;
     FILE* archi= fopen(archivoProducto, "rb");
@@ -291,6 +299,10 @@ void mostrarProductoEconomico(char archivoProducto[])
         {
             if(prod.economico==1 && prod.activo==1)
             {
+                while(!pilavacia(&cant))
+                {
+                    mostrar(&cant);
+                }
                 mostrarP(prod);
             }
         }

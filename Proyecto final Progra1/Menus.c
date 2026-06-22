@@ -5,12 +5,15 @@
 #include <stdio.h>
 #include <string.h>
 #include <windows.h>
+#include "pila.h"
 
 #define DIMTEXTO 30
 
 void menuPrincipal()
 {
     int op;
+
+
     do
     {
         printf("Ingrese una opcion:\n");
@@ -269,8 +272,10 @@ void menuProducto()
     FILE* archi= fopen(archivoProducto, "ab");
     fclose(archi);
 
+     Pila baratos;
+     inicpila(&baratos);
 
-        int controlP=0;
+        int controlP;
         do
         {
             printf("------MENU PRODUCTO------\n");
@@ -286,7 +291,7 @@ void menuProducto()
             switch(controlP)
             {
             case 1:
-                cargarStProducto(archivoProducto);
+                cargarStProducto(archivoProducto, &baratos);
                 system("pause");
                 system("cls");
                 break;
@@ -304,7 +309,7 @@ void menuProducto()
                 break;
 
             case 4:
-                mostrarProductoEconomico(archivoProducto);
+                mostrarProductoEconomico(archivoProducto, baratos);
                 system("pause");
                 system("cls");
                 break;
