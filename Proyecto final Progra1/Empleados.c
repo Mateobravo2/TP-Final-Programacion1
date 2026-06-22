@@ -141,6 +141,7 @@ stEmpleado modificarEmpleado(FILE *archi, int id)
                 if(op == 's' || op == 'S')
                 {
                     printf("\nIngrese el nuevo nombre y apellido: ");
+                    while(getchar() != '\n');
                     fgets(aux.nombreYApellido, DIMTEXTO, stdin);
                     aux.nombreYApellido[strcspn(aux.nombreYApellido, "\n")] = '\0';
                 }
@@ -156,6 +157,7 @@ stEmpleado modificarEmpleado(FILE *archi, int id)
                 if(op == 's' || op == 'S')
                 {
                     printf("\nIngrese el nuevo puesto: ");
+                    while(getchar() != '\n');
                     fgets(aux.puesto, DIMTEXTO, stdin);
                     aux.puesto[strcspn(aux.puesto, "\n")] = '\0';
                 }

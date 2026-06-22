@@ -299,12 +299,10 @@ void menuProducto()
             case 0:
                 printf("FIN DE LA EJECUCION...\n");
                 break;
-
-
             }
 
         }
-        while(controlP==0);
+        while(controlP != 0);
 
 
 }
