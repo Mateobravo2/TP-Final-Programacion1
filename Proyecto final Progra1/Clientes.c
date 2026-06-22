@@ -122,7 +122,7 @@ stCliente modificarCliente(FILE *archi, int id)
             scanf(" %c", &op);
             if(op == 's' || op == 'S')
             {
-                while(getchar() != '\n');
+                while (getchar() != '\n');
                 printf("\n Ingrese el nuevo nombre: ");
                 fgets(aux.nombre, DIMTEXTO, stdin);
                 aux.nombre[strcspn(aux.nombre, "\n")] = '\0';

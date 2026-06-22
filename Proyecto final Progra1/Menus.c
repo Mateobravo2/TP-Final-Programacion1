@@ -12,10 +12,13 @@
 void menuPrincipal()
 {
     int op;
+<<<<<<< Updated upstream
     int i=0;
     Pila contador;
     inicpila(&contador);
 
+=======
+>>>>>>> Stashed changes
     do
     {
         printf("Ingrese una opcion:\n");

@@ -7,7 +7,7 @@
 void cargarStProducto(char archivoProducto[], Pila* economico)
 {
     stProducto prod;
-    int i = 0, j = 0, stock = 0;
+    int i = 0, j = 0;
     FILE* archi = fopen(archivoProducto, "r+b");
     if(archi!=NULL)
     {
@@ -15,14 +15,10 @@ void cargarStProducto(char archivoProducto[], Pila* economico)
         while(fread(&prod, sizeof(stProducto), 1, archi) > 0)
         {
             i++;
-            if(prod.economico == 1)
-            {
-                stock++;
-            }
         }
         while(control == 's')
         {
-            prod = cargaProducto(i+1, stock);
+            prod = cargaProducto(i+1);
             if(prod.economico == 1)
             {
                 j++;
@@ -37,14 +33,15 @@ void cargarStProducto(char archivoProducto[], Pila* economico)
 }
 
 
-stProducto cargaProducto(int i, int stock)
+stProducto cargaProducto(int i) // Le saqué el parámetro de stock erróneo
 {
     stProducto aux;
-    aux.id= i;
-    printf("ingrese el nombre del producto\n");
-    while(getchar() != '\n');
+    aux.id = i;
+    aux.activo = 1;
+    printf("ingrese el nombre del producto: ");
     fgets(aux.nombre, DIMTEXTO, stdin);
     aux.nombre[strcspn(aux.nombre, "\n")] = '\0';
+<<<<<<< Updated upstream
     printf("ingrese el precio del producto\n");
 
     while (scanf("%f", &aux.precio) != 1 || aux.precio<=0)
@@ -53,13 +50,31 @@ stProducto cargaProducto(int i, int stock)
         while(getchar() != '\n');
     }
     if(aux.precio<2000)
+=======
+    printf("ingrese el precio del producto: ");
+    scanf("%f", &aux.precio);
+    while(aux.precio < 0)
+>>>>>>> Stashed changes
     {
-        aux.economico=1;
+        printf("ERROR, el precio debe ser 0 o mayor: ");
+        scanf("%f", &aux.precio);
+    }
+    if(aux.precio <= 2000)
+    {
+        aux.economico = 1;
     }
     else
     {
-        aux.economico=0;
+        aux.economico = 0;
     }
+    printf("ingrese el stock del producto: ");
+    scanf("%i", &aux.stock);
+    while(aux.stock < 0)
+    {
+        printf("ERROR, el stock no puede ser negativo: ");
+        scanf("%i", &aux.stock);
+    }
+<<<<<<< Updated upstream
     printf("ingrese la cantidad de productos\n");
     while (scanf("%i", &aux.stock) != 1 || aux.stock<=0)
     {
@@ -67,6 +82,8 @@ stProducto cargaProducto(int i, int stock)
         while(getchar() != '\n');
     }
     aux.activo=1;
+=======
+>>>>>>> Stashed changes
     return aux;
 }
 
@@ -86,7 +103,6 @@ void mostrarProducto(char archivoProducto[])
         }
         fclose(archi);
     }
-
 }
 
 void mostrarP(stProducto prod)
@@ -99,7 +115,6 @@ void mostrarP(stProducto prod)
     printf("unidades %i\n", prod.stock);
     printf("-------------------------\n");
 }
-
 
 void buscarProducto(char archivoProducto[])
 {
@@ -137,7 +152,6 @@ void buscarProducto(char archivoProducto[])
         fclose(archi);
     }
 }
-
 
 void buscarPorNombre(FILE* archi)
 {
@@ -237,8 +251,12 @@ void buscarPorId(FILE* archi)
         banderap=0;
     }
 }
+<<<<<<< Updated upstream
 //MODIFICACION Y BAJA
+=======
+>>>>>>> Stashed changes
 
+//MODIFICACION Y BAJA
 stProducto menuProdElegido(stProducto prod)
 {
     int opp;
