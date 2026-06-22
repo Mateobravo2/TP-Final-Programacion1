@@ -1,6 +1,7 @@
 #include "Menus.h"
 #include "Clientes.h"
 #include "Empleados.h"
+#include "Productos.h"
 #include <stdio.h>
 #include <string.h>
 #include <windows.h>
@@ -270,34 +271,44 @@ void menuProducto()
         do
         {
             printf("------MENU PRODUCTO------\n");
-            printf("1. cargar producto\n");
-            printf("2. buscar producto\n");
-            printf("3. mostrar producto\n");
-            printf("4. mostrar productos economicos\n");
-            printf("0. salir\n");
+            printf("|1|. CARGAR PRODUCTO\n");
+            printf("|2|. BUSCAR PRODUCTO\n");
+            printf("|3|. MOSTRAR PRODUCTO\n");
+            printf("|4|. MOSTRAR PRODUCTOS ECONOMICOS\n");
+            printf("|0|. VOLVER AL MENU PRINCIPAL\n");
 
-            scanf(" %i", &controlP);
+            scanf("%i", &controlP);
+
 
             switch(controlP)
             {
             case 1:
                 cargarStProducto(archivoProducto);
+                system("pause");
+                system("cls");
                 break;
 
             case 2:
                 buscarProducto(archivoProducto);
+                system("pause");
+                system("cls");
                 break;
 
             case 3:
                 mostrarProducto(archivoProducto);
+                system("pause");
+                system("cls");
                 break;
 
             case 4:
                 mostrarProductoEconomico(archivoProducto);
+                system("pause");
+                system("cls");
                 break;
 
             case 0:
-                printf("FIN DE LA EJECUCION...\n");
+                printf("VOLVIENDO AL MENU...\n");
+                system("pause");
                 break;
 
 

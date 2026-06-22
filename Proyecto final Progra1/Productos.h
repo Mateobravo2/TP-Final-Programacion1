@@ -1,6 +1,7 @@
 #ifndef PRODUCTOS_H_INCLUDED
 #define PRODUCTOS_H_INCLUDED
 #include <stdio.h>
+#include <string.h>
 #define DIMTEXTO 30
 
 typedef struct

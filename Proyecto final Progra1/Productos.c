@@ -1,6 +1,7 @@
 #include "Productos.h"
 #include <string.h>
 #include <stdio.h>
+#include <stdlib.h>
 
 ///ALTA PRODUCTO
 void cargarStProducto(char archivoProducto[])
@@ -9,6 +10,7 @@ void cargarStProducto(char archivoProducto[])
     FILE* archi = fopen(archivoProducto, "r+b");
     if(archi!=NULL)
     {
+
         int i=0;
         char control='s';
         while(fread(&prod, sizeof(stProducto), 1, archi) > 0)
@@ -96,7 +98,10 @@ void buscarProducto(char archivoProducto[])
             printf("1. buscar producto por nombre\n");
             printf("2. buscar producto por id\n");
             printf("0. si desea salir\n");
+
             scanf(" %i", &controlP);
+            system("cls");
+
             switch(controlP)
             {
             case 1:
@@ -124,6 +129,7 @@ void buscarPorNombre(FILE* archi)
     {
         printf("ingrese el nombre del producto\n");
         scanf(" %s", &nombreAux);
+        system("cls");
 
         while(fread(&prod, sizeof(stProducto), 1, archi)>0 && banderaP==0)
         {
@@ -132,6 +138,7 @@ void buscarPorNombre(FILE* archi)
                 mostrarP(prod);
                 printf("desea ingresar al menu del producto? s/n\n");
                 scanf(" %c", &banderaNo);
+                system("cls");
 
                 if(banderaNo=='s')
                 {
@@ -152,6 +159,7 @@ void buscarPorNombre(FILE* archi)
         }
         printf("desea buscar otro producto? s/n\n");
         scanf(" %c", &banderaN);
+        system("cls");
         fseek(archi, 0, SEEK_SET);
         banderaP=0;
     }
@@ -168,6 +176,7 @@ void buscarPorId(FILE* archi)
     {
         printf("ingrese el id del producto\n");
         scanf(" %i", &idAux);
+        system("cls");
         while(fread(&prod, sizeof(stProducto), 1, archi)>0 && banderap==0 )
         {
             if (idAux==prod.id && prod.activo==1)
@@ -176,6 +185,7 @@ void buscarPorId(FILE* archi)
 
                 printf("desea ingresar al menu del producto? s/n\n");
                 scanf(" %c", &banderaP);
+                system("cls");
 
                 if(banderaP=='s')
                 {
@@ -196,6 +206,7 @@ void buscarPorId(FILE* archi)
         }
         printf("desea buscar otro producto? s/n\n");
         scanf(" %c", &banderaId);
+        system("cls");
         fseek(archi, 0, SEEK_SET);
         banderap=0;
     }
@@ -208,13 +219,16 @@ stProducto menuProdElegido(stProducto prod)
     stProducto aux;
     do
     {
-        printf("------MENU PRODUCTO %s-----\n", prod.nombre);
-        printf("1. modificar nombre\n");
-        printf("2. modificar precio\n");
-        printf("3.  modificar stock\n");
-        printf("4. eliminar producto\n");
-        printf("0. salir\n");
+        printf("________MENU PRODUCTO %s________\n", prod.nombre);
+        printf("|1|. MODIFICAR NOMBRE\n");
+        printf("|2|. MODIFICAR PRECIO\n");
+        printf("|3|. MODIFICAR STOCK\n");
+        printf("|4|. ELIMINAR PRODUCTO\n");
+        printf("|0|. SALIR\n");
+
         scanf("%i", &opp);
+        system("cls");
+
         switch(opp)
         {
         case 1:
@@ -223,11 +237,11 @@ stProducto menuProdElegido(stProducto prod)
             break;
         case 2:
             printf("que precio quiere seleccionar para %s\n", prod.nombre);
-            scanf("%f", aux.precio);
+            scanf("%f", &aux.precio);
             while(aux.precio < 0)
             {
                 printf("ERROR, el precio debe ser de 0 o mas\n");
-                scanf("%f", aux.precio);
+                scanf("%f", &aux.precio);
             }
             if(aux.precio<=2000)
             {
@@ -242,22 +256,23 @@ stProducto menuProdElegido(stProducto prod)
 
         case 3:
             printf("cuantas unidades va querer en %s\n", prod.nombre);
-            scanf("%i", aux.stock);
+            scanf("%i", &aux.stock);
              while(aux.stock < 0)
             {
                 printf("ERROR, el stock debe ser de 0 o mas\n");
-                scanf("%i", aux.stock);
+                scanf("%i", &aux.stock);
             }
             prod.stock= aux.stock;
             break;
+
         case 4:
 
             prod.activo=0;
             printf("el archivo a sido eliminado.\n");
             break;
         }
-    }
-    while(opp==0);
+    }while(opp==0);
+
     return prod;
 }
 
