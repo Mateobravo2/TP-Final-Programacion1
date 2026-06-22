@@ -247,6 +247,7 @@ stProducto menuProdElegido(stProducto prod)
         case 4:
             prod.activo=0;
             printf("El producto ha sido eliminado.\n");
+            opp = 0;
             break;
         }
     }while(opp != 0);

@@ -1,5 +1,7 @@
 #include "Empleados.h"
 #include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 
 //ALTA EMPLEADO
 stEmpleado crearUnEmpleado(int id)
@@ -233,10 +235,26 @@ void mostrarEmpleadosArchivoID(char nombre[], int id)
 //LISTADOS
 void listarEmpleadosSeleccionAlfabetica(char nombre[])
 {
-    stEmpleado lista[100];
-    int validos = pasarArchivoArreglo(nombre, lista, 100);
-    int posMenor;
-    stEmpleado temp;
+    int posMenor = 0, validos = 0, cantidadActivos = 0;
+    stEmpleado temp, aux;
+    stEmpleado *lista = (stEmpleado*) malloc(sizeof(stEmpleado));
+    FILE *archi = fopen(nombre, "rb");
+    if(archi != NULL)
+    {
+        while(fread(&aux, sizeof(stEmpleado), 1, archi) > 0)
+        {
+            if(aux.activo == 1) cantidadActivos++;
+        }
+        fclose(archi);
+    }
+
+    if(cantidadActivos == 0) {
+        printf("\nNo hay empleados activos para listar.\n");
+    }
+    lista = (stEmpleado*) realloc(lista, (sizeof(stEmpleado))* cantidadActivos);
+    if(lista == NULL) {
+        printf("Error al asignar memoria dinamica.\n");
+    }
     for(int i = 0; i < validos - 1; i++)
     {
         posMenor = i;
@@ -251,11 +269,12 @@ void listarEmpleadosSeleccionAlfabetica(char nombre[])
         lista[posMenor] = lista[i];
         lista[i] = temp;
     }
-    printf("\n--- LISTADO ALFABETICO (SELECCION) ---\n");
+    printf("\n--- LISTADO ALFABETICO - ARREGLO DINAMICO (SELECCION) ---\n");
     for(int i = 0; i < validos; i++)
     {
         mostrarEmpleado(lista[i]);
     }
+    free(lista);
 }
 
 int pasarArchivoArreglo(char nombre[], stEmpleado arreglo[], int dim)

@@ -151,7 +151,6 @@ void menuClientes()
                 op = -1;
             }
             mostrarClientesArchivoID(nombre, id);
-
             system("pause");
             system("cls");
             break;

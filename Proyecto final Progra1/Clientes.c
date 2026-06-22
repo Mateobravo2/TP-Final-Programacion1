@@ -8,7 +8,7 @@ stCliente crearCliente(int id)
     stCliente aux;
     printf("_______________________________\n");
     aux.id = id;
-    printf(" Ingrese el DNI del cliente: ");
+    printf("Ingrese el DNI del cliente: ");
     scanf("%i", &aux.dni);
     while ((c = getchar()) != '\n' && c != EOF);
     printf(" Ingrese el nombre del cliente: ");
@@ -19,12 +19,12 @@ stCliente crearCliente(int id)
     printf("-------------------------------\n");
     return aux;
 }
-
+//AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 void altaClientesArchivo(char nombre[])
 {
     int i = 0;
     stCliente aux;
-    FILE *archi = fopen(nombre, "r+b");
+    FILE *archi = fopen(nombre, "a+b");
     if(archi != NULL)
     {
         while(fread(&aux, sizeof(stCliente), 1, archi) > 0)
