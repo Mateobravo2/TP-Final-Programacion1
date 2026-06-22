@@ -1,5 +1,7 @@
 #include "Clientes.h"
 #include <string.h>
+#include "Productos.h"
+#include <stdlib.h>
 
 //ALTA CLIENTE
 stCliente crearCliente(int id)
@@ -106,41 +108,41 @@ stCliente modificarCliente(FILE *archi, int id)
     char op = 'n';
     stCliente aux;
     while(encontrado == 0 && fread(&aux, sizeof(stCliente), 1, archi) > 0)
+    {
+        if(aux.id == id && aux.activo == 1)
         {
-            if(aux.id == id && aux.activo == 1)
+            encontrado = 1;
+            printf("\n---Modificando cliente ID: &i\n", aux.id);
+            printf("Quiere modificar el DNI? (s/n): ");
+            scanf(" %c", &op);
+            if(op == 's' || op == 'S')
             {
-                encontrado = 1;
-                printf("\n---Modificando cliente ID: &i\n", aux.id);
-                printf("Quiere modificar el DNI? (s/n): ");
-                scanf(" %c", &op);
-                if(op == 's' || op == 'S')
-                {
-                    printf("\n Ingrese el nuevo DNI: ");
-                    scanf("%i", &aux.dni);
-                }
-                printf("\nQuiere modificar el nombre? (s/n): ");
-                scanf(" %c", &op);
-                if(op == 's' || op == 'S')
-                {
-                    printf("\n Ingrese el nuevo nombre: ");
-                    scanf(" %s", &aux.nombre);
-                }
-                printf("\nQuiere modificar el carrito? (s/n): ");
-                scanf(" %c", &op);
-                if(op == 's' || op == 'S')
-                {
-                    printf("\n Ingrese el nuevo carrito: ");
-                    //LLAMAR FUNCION DE CREAR CARRITO !!!!
-                }
-                fseek(archi, -sizeof(stCliente), SEEK_CUR);
-                fwrite(&aux, sizeof(stCliente), 1, archi);
-                mostrarCliente(aux);
+                printf("\n Ingrese el nuevo DNI: ");
+                scanf("%i", &aux.dni);
             }
+            printf("\nQuiere modificar el nombre? (s/n): ");
+            scanf(" %c", &op);
+            if(op == 's' || op == 'S')
+            {
+                printf("\n Ingrese el nuevo nombre: ");
+                scanf(" %s", &aux.nombre);
+            }
+            printf("\nQuiere modificar el carrito? (s/n): ");
+            scanf(" %c", &op);
+            if(op == 's' || op == 'S')
+            {
+                printf("\n Ingrese el nuevo carrito: ");
+                //LLAMAR FUNCION DE CREAR CARRITO !!!!
+            }
+            fseek(archi, -sizeof(stCliente), SEEK_CUR);
+            fwrite(&aux, sizeof(stCliente), 1, archi);
+            mostrarCliente(aux);
         }
-        if(encontrado == 0)
-        {
-            printf("\nERROR: Cliente no encontrado o inactivo.\n");
-        }
+    }
+    if(encontrado == 0)
+    {
+        printf("\nERROR: Cliente no encontrado o inactivo.\n");
+    }
     return aux;
 }
 
@@ -171,7 +173,7 @@ void mostrarArchivoClientes(char nombre[])
     {
         while(fread(&aux, sizeof(stCliente), 1, archi) > 0)
         {
-                mostrarCliente(aux);
+            mostrarCliente(aux);
         }
         fclose(archi);
     }
@@ -199,6 +201,96 @@ void mostrarClientesArchivoID(char nombre[], int id)
         }
         fclose(archi);
     }
+}
+
+void hacerVenta(char nombre[], char archivoProducto[], int id)
+{
+
+    stCliente comprador;
+    stCliente aux;
+
+    int bandera=0;
+
+    FILE* archio= fopen(nombre, "r+b");
+    FILE* archi= fopen(archivoProducto, "r+b");
+    if(archi!=NULL || archio!=NULL)
+    {
+        printf("ingrese su numero de dni:\n");
+        scanf("%i", &aux.dni);
+
+        while(fread(&comprador, sizeof(stCliente),1, archio) && bandera==0)
+        {
+            if(aux.dni == comprador.dni)
+            {
+
+                mostrarProducto(archivoProducto);
+                menuVenta(aux, archivoProducto);
+                bandera=1;
+
+            }
+        }
+
+        fclose(archi);
+        fclose(archio);
+    }
+
+
+}
+
+void menuVenta(stCliente comprador, char archivoProducto[])
+{
+    int op;
+    stProducto prod;
+    char pro[20];
+    int cant;
+    int bandera=0;
+    char band='s';
+
+    FILE* archi= fopen(archivoProducto, "r+b");
+
+    if(archi!=NULL)
+    {
+        while(band=='s')
+        {
+
+
+            printf("QUE DESEA COMPRAR?\n");
+            scanf(" %s", &pro);
+            while(fread(&prod, sizeof(stProducto),1, archi) && bandera==0)
+            {
+                if(strcmpi(pro, prod.nombre)==0)
+                {
+                    printf("CUANTOS DESEA COMPRAR?\n");
+                    scanf("%i", &cant);
+                    if(cant<=prod.stock)
+                    {
+                        fseek(archi, sizeof(stProducto)*(-1), SEEK_CUR);
+                        prod.stock-=cant;
+                        fwrite(&prod, sizeof(stProducto),1, archi);
+
+                        printf("venta realizada correctamente, usted ha comprado %i %s", cant, pro);
+                        bandera=1;
+                    }
+                    else
+                    {
+                        printf("error, no existe esa cantidad de productos\n");
+                    }
+
+                }
+                else
+                {
+                    printf("no existe ese producto\n");
+                }
+            }
+                printf("desea hacer otra compra? s/n\n");
+                scanf(" %c", &band);
+                fseek(archi, 0, SEEK_SET);
+                system("cls");
+                bandera=0;
+        }
+        fclose(archi);
+    }
+
 }
 
 //LISTADOS DE CLIENTE

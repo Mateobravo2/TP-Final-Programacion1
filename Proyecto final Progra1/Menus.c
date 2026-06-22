@@ -81,6 +81,7 @@ void menuClientes()
 {
     int op, id;
     char nombre[DIMTEXTO] = "clientes.bin";
+    char archivoProducto[]="producto.bin";
     do
     {
         printf("\x1b[34mCLIENTE\x1b[0m\n");
@@ -93,6 +94,7 @@ void menuClientes()
         printf("|[5] MOSTRAR CLIENTE POR ID         |\n");
         printf("|[6] MOSTRAR CLIENTE A-Z            |\n");
         printf("|[7] MOSTRAR CLIENTE ORDEN POR DNI  |\n");
+        printf("|[8] HACER COMPRA                   |\n");
         printf("|\x1b[31m[0]          SALIR\x1b[0m                 |\n");
         printf("-------------------------------------\n");
         if (scanf("%i", &op) != 1)
@@ -169,6 +171,11 @@ void menuClientes()
             system("pause");
             system("cls");
             break;
+        case 8:
+            hacerVenta(nombre,archivoProducto,id);
+            system("pause");
+            system("cls");
+
         }
     }
     while(op != 0);

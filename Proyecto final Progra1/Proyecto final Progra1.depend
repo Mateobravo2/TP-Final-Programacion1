@@ -66,11 +66,13 @@
 	<string.h>
 	<stdio.h>
 
-1782144095 source:c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\clientes.c
+1782150101 source:c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\clientes.c
 	"Clientes.h"
 	<string.h>
+	"Productos.h"
+	<stdlib.h>
 
-1782079628 c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\clientes.h
+1782149326 c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\clientes.h
 	<stdio.h>
 	"Productos.h"
 
@@ -94,7 +96,7 @@
 
 1782079628 c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\menus.h
 
-1782145631 source:c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\menus.c
+1782149495 source:c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\menus.c
 	"Menus.h"
 	"Clientes.h"
 	"Empleados.h"
