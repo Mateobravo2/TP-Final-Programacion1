@@ -75,7 +75,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1782158271 source:c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\clientes.c
+1782179335 source:c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\clientes.c
 	"Clientes.h"
 	<string.h>
 	"Productos.h"
@@ -85,7 +85,7 @@
 	<stdio.h>
 	"Productos.h"
 
-1782158271 c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\productos.h
+1782179335 c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\productos.h
 	<stdio.h>
 	<string.h>
 	"pila.h"
@@ -107,7 +107,7 @@
 
 1782079628 c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\menus.h
 
-1782159202 source:c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\menus.c
+1782179335 source:c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\menus.c
 	"Menus.h"
 	"Clientes.h"
 	"Empleados.h"
@@ -117,7 +117,7 @@
 	<windows.h>
 	"pila.h"
 
-1782159938 source:c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\productos.c
+1782181041 source:c:\users\gc\onedrive\documentos\github\tp-final-programacion\proyecto final progra1\productos.c
 	"Productos.h"
 	<string.h>
 	<stdio.h>
