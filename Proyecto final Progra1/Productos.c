@@ -134,9 +134,9 @@ void buscarPorNombre(char archivoProducto[])
             }
             if(banderaP==0)
             {
-                printf("error el producto buscado no existe\n");
+                printf("ERROR: el producto buscado no existe\n");
             }
-            printf("desea buscar otro producto? s/n\n");
+            printf("Desea buscar otro producto? s/n\n");
             scanf(" %c", &banderaN);
             system("cls");
             fseek(archi, 0, SEEK_SET);
@@ -158,11 +158,11 @@ void buscarPorId(char archivoProducto[])
     {
         while(banderaId == 's')
         {
-            printf("ingrese el id del producto\n");
+            printf("Ingrese el id del producto\n");
 
             while (scanf("%i", &idAux) != 1)
             {
-                printf("dato invalido. ingrese nuevamente:\n");
+                printf("Dato invalido. ingrese nuevamente:\n");
                 while(getchar() != '\n');
             }
             system("cls");
@@ -172,7 +172,7 @@ void buscarPorId(char archivoProducto[])
                 {
                     mostrarP(prod);
 
-                    printf("desea ingresar al menu del producto? s/n\n");
+                    printf("Desea ingresar al menu del producto? s/n\n");
                     scanf(" %c", &banderaP);
                     system("cls");
 
@@ -228,7 +228,7 @@ stProducto menuProdElegido(stProducto prod)
         {
         case 1:
             while(getchar() != '\n');
-            printf("escriba el nuevo nombre\n");
+            printf("Escriba el nuevo nombre\n");
             fgets(prod.nombre, DIMTEXTO, stdin);
             prod.nombre[strcspn(prod.nombre, "\n")] = '\0';
             break;
