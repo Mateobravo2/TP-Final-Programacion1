@@ -13,8 +13,6 @@ void menuPrincipal()
 {
     int op;
     int i=0;
-    Pila contador;
-    inicpila(&contador);
     do
     {
         printf("Ingrese una opcion:\n");
@@ -29,7 +27,6 @@ void menuPrincipal()
             while (getchar() != '\n');
             op = -1;
         }
-        apilar(&contador,i++);
         system("cls");
         switch(op)
         {
@@ -55,10 +52,6 @@ void menuPrincipal()
             break;
         case 0:
             printf("- - - FINALIZANDO EL PROGRAMA - - -\n");
-            if(!pilavacia(&contador))
-            {
-              printf("veces ejecutadas: %i", tope(&contador));
-            }
             break;
         }
 
@@ -99,7 +92,7 @@ void menuClientes()
         printf("| [5] MOSTRAR CLIENTE POR ID         |\n");
         printf("| [6] MOSTRAR CLIENTE A-Z            |\n");
         printf("| [7] MOSTRAR CLIENTE ORDEN POR DNI  |\n");
-        printf("| \x1b[31m[0] VOLVER AL MENU PRINCIPAL\x1b[0m      |\n");
+        printf("| \x1b[31m[0] VOLVER AL MENU PRINCIPAL\x1b[0m       |\n");
         printf("--------------------------------------\n");
         if (scanf("%i", &op) != 1)
         {
@@ -135,6 +128,8 @@ void menuClientes()
                     system("cls");
                 }
                 bajaDeClienteDeArchivo(nombre, id);
+                system("pause");
+                system("cls");
                 break;
             case 3:
                 printf("Ingrese el ID del cliente: ");
@@ -162,7 +157,6 @@ void menuClientes()
                     op = -1;
                 }
                 mostrarClientesArchivoID(nombre, id);
-
                 system("pause");
                 system("cls");
                 break;
@@ -186,7 +180,7 @@ void menuEmpleado()
     char nombreArchivo[DIMTEXTO] = "empleados.bin";
     do
     {
-        printf("\x1b[33mEMPLEADOS\x1b[0m\n");
+        printf("-------\x1b[33mEMPLEADOS\x1b[0m-------\n");
         printf("______________________________________\n");
         printf("| [1] ALTA DE EMPLEADO               |\n");
         printf("| [2] BAJA DE EMPLEADO               |\n");
@@ -195,7 +189,7 @@ void menuEmpleado()
         printf("| [5] MOSTRAR EMPLEADO POR ID        |\n");
         printf("| [6] MOSTRAR EMPLEADO A-Z           |\n");
         printf("| [7] MOSTRAR EMPLEADO ORDEN POR DNI |\n");
-        printf("| \x1b[31m[0] VOLVER AL MENU PRINCIPAL\x1b[0m      |\n");
+        printf("| \x1b[31m[0] VOLVER AL MENU PRINCIPAL\x1b[0m       |\n");
         printf("--------------------------------------\n");
         if (scanf("%i", &op) != 1)
         {
@@ -220,6 +214,8 @@ void menuEmpleado()
                 system("cls");
             }
             bajaEmpleadoArchivo(nombreArchivo, id);
+            system("pause");
+            system("cls");
             break;
         case 3:
             printf("Ingrese la ID del empleado: ");
@@ -231,6 +227,8 @@ void menuEmpleado()
                 system("cls");
             }
             modificarEmpleadoArchivo(nombreArchivo, id);
+            system("pause");
+            system("cls");
             break;
         case 4:
             mostrarArchivoEmpleado(nombreArchivo);
@@ -247,6 +245,8 @@ void menuEmpleado()
                 system("cls");
             }
             mostrarEmpleadosArchivoID(nombreArchivo, id);
+            system("pause");
+            system("cls");
             break;
         case 6:
             listarEmpleadosSeleccionAlfabetica(nombreArchivo);
@@ -274,14 +274,14 @@ void menuEmpleado()
 void menuProducto()
 {
     int controlP;
-    char archivoProducto[]="producto.bin";
+    char archivoProducto[DIMTEXTO] = "producto.bin";
     FILE* archi= fopen(archivoProducto, "ab");
     fclose(archi);
     Pila baratos;
     inicpila(&baratos);
         do
         {
-            printf("\x1b[32m PRODUCTOS\x1b[0m\n");
+            printf("------\x1b[32mPRODUCTOS\x1b[0m------\n");
             printf("_____________________________________\n");
             printf("| [1] CARGAR PRODUCTO               |\n");
             printf("| [2] BUSCAR PRODUCTO               |\n");
@@ -304,7 +304,7 @@ void menuProducto()
                 break;
 
             case 2:
-                buscarProducto(archivoProducto);
+                menuBuscarProducto();
                 system("pause");
                 system("cls");
                 break;
@@ -333,4 +333,45 @@ void menuProducto()
                 break;
             }
         }while(controlP != 0);
+}
+
+void menuBuscarProducto()
+{
+    int controlP;
+    char archivoProducto[DIMTEXTO] = "producto.bin";
+    do
+    {
+        printf("-------MENU BUSQUEDA DE PRODUCTO-------\n\n");
+        printf("_______________________________________");
+        printf("|    SELECCIONE LA OPCION DESEADA     |\n");
+        printf("| [1] Buscar producto por nombre      |\n");
+        printf("| [2] Buscar producto por ID          |\n");
+        printf("| [0]           VOLVER                |\n");
+        printf("---------------------------------------");
+        while (scanf("%i", &controlP) != 1)
+        {
+            while(getchar() != '\n');
+            controlP = -1;
+        }
+        system("cls");
+        switch(controlP)
+        {
+        case 1:
+            buscarPorNombre(archivoProducto);
+            break;
+        case 2:
+            buscarPorId(archivoProducto);
+            break;
+        case 0:
+            printf(" --- VOLVIENDO AL MENU DE PRODUCTOS---");
+            barraCarga();
+            break;
+        default:
+            printf("- - - INGRESE UNA OPCION VALIDA - - -\n");
+            system("pause");
+            system("cls");
+            break;
+        }
+    }
+    while(controlP==0);
 }

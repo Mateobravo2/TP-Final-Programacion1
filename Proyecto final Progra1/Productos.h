@@ -24,8 +24,8 @@ stProducto menuProdElegido(stProducto prod);
 void mostrarProducto(char archivoProducto[]);
 void mostrarP(stProducto prod);
 void buscarProducto(char archivoProducto[]);
-void buscarPorNombre(FILE* archi);
-void buscarPorId(FILE* archi);
+void buscarPorNombre(char archivoProducto[]);
+void buscarPorId(char archivoProducto[]);
 //LISTADO
 void mostrarProductoEconomico(char archivoProducto[], Pila cant);
 

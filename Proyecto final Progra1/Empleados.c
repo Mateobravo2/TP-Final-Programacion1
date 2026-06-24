@@ -6,7 +6,6 @@
 //ALTA EMPLEADO
 stEmpleado crearUnEmpleado(int id)
 {
-    int c;
     char nombre[DIMTEXTO];
     char apellido[DIMTEXTO];
     stEmpleado aux;
@@ -26,11 +25,10 @@ stEmpleado crearUnEmpleado(int id)
     {
         aux.edad = edad;
     }
-    while ((c = getchar()) != '\n' && c != EOF);
+    while (getchar() != '\n');
     printf(" Ingrese el nombre y apellido del empleado: ");
     fgets(aux.nombreYApellido, DIMTEXTO, stdin);
     aux.nombreYApellido[strcspn(aux.nombreYApellido, "\n")] = '\0';
-    while (getchar() != '\n');
     printf(" ingrese puesto del empleado: ");
     fgets(aux.puesto, DIMTEXTO, stdin);
     aux.puesto[strcspn(aux.puesto, "\n")] = '\0';
@@ -222,6 +220,10 @@ void mostrarEmpleadosArchivoID(char nombre[], int id)
                 mostrarEmpleado(aux);
                 encontrado = 1;
             }
+            else
+            {
+                encontrado = 0;
+            }
         }
         if(encontrado == 0)
         {
@@ -254,7 +256,8 @@ void listarEmpleadosSeleccionAlfabetica(char nombre[])
         printf("\nNo hay empleados activos para listar.\n");
     }
     lista = (stEmpleado*) realloc(lista, (sizeof(stEmpleado))* cantidadActivos);
-    if(lista == NULL) {
+    if(lista == NULL)
+    {
         printf("Error al asignar memoria dinamica.\n");
     }
     validos = pasarArchivoArreglo(nombre, lista, cantidadActivos);

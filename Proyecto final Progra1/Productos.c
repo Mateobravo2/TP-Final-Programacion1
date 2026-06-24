@@ -20,7 +20,6 @@ void cargarStProducto(char archivoProducto[])
         {
             prod = cargaProducto(i+1);
             i++;
-
             fwrite(&prod, sizeof(stProducto), 1, archi);
             printf("Desea seguir cargando datos? s/n\n");
             scanf(" %c", &control);
@@ -28,7 +27,6 @@ void cargarStProducto(char archivoProducto[])
         fclose(archi);
     }
 }
-
 
 stProducto cargaProducto(int i) // Le saqué el parámetro de stock erróneo
 {
@@ -93,144 +91,116 @@ void mostrarP(stProducto prod)
     printf("-------------------------\n");
 }
 
-void buscarProducto(char archivoProducto[])
-{
-    FILE* archi= fopen(archivoProducto, "r+b");
-    if(archi!=NULL)
-    {
-        int controlP;
-        do
-        {
-            printf("-------MENU-------\n");
-            printf("\n");
-            printf("seleccione por numero\n");
-            printf("1. buscar producto por nombre\n");
-            printf("2. buscar producto por id\n");
-            printf("0. si desea salir\n");
-
-            while (scanf("%i", &controlP) != 1)
-            {
-                printf("Dato invalido. Ingrese nuevamente: \n");
-                while(getchar() != '\n');
-            }
-            system("cls");
-
-            switch(controlP)
-            {
-            case 1:
-                buscarPorNombre(archi);
-                break;
-            case 2:
-                buscarPorId(archi);
-                break;
-            }
-        }
-        while(controlP==0);
-        fclose(archi);
-    }
-}
-
-void buscarPorNombre(FILE* archi)
+void buscarPorNombre(char archivoProducto[])
 {
     stProducto prod;
     int banderaP=0;
     char nombreAux[20];
     char banderaN='s';
     char banderaNo='s';
-
-    while(banderaN=='s')
+    FILE *archi = fopen(archivoProducto, "rb");
+    if(archi != NULL)
     {
-        printf("Ingrese el nombre del producto\n");
-        scanf(" %s", &nombreAux);
-        system("cls");
-        while(fread(&prod, sizeof(stProducto), 1, archi)>0 && banderaP==0)
+         while(banderaN=='s')
         {
-            if (strcmpi(nombreAux,prod.nombre) == 0 && prod.activo==1)
+            printf("Ingrese el nombre del producto\n");
+            scanf(" %s", &nombreAux);
+            system("cls");
+            while(fread(&prod, sizeof(stProducto), 1, archi)>0 && banderaP==0)
             {
-                mostrarP(prod);
-                printf("Desea ingresar al menu del producto? s/n\n");
-                scanf(" %c", &banderaNo);
-                system("cls");
-                if(banderaNo=='s')
+                if (strcmpi(nombreAux,prod.nombre) == 0 && prod.activo==1)
                 {
-                    prod = menuProdElegido(prod);
-                    fseek(archi, sizeof(stProducto)*(-1), SEEK_CUR);
-                    fwrite(&prod, sizeof(stProducto),1, archi);
+                    mostrarP(prod);
+                    printf("Desea ingresar al menu del producto? s/n\n");
+                    scanf(" %c", &banderaNo);
+                    system("cls");
+                    if(banderaNo=='s')
+                    {
+                        prod = menuProdElegido(prod);
+                        fseek(archi, sizeof(stProducto)*(-1), SEEK_CUR);
+                        fwrite(&prod, sizeof(stProducto),1, archi);
 
-                    fflush(archi);
-                    banderaP=1;
-                    break;
-                }
-                else
-                {
-                    banderaP=1;
+                        fflush(archi);
+                        banderaP=1;
+                        break;
+                    }
+                    else
+                    {
+                        banderaP=1;
+                    }
                 }
             }
+            if(banderaP==0)
+            {
+                printf("error el producto buscado no existe\n");
+            }
+            printf("desea buscar otro producto? s/n\n");
+            scanf(" %c", &banderaN);
+            system("cls");
+            fseek(archi, 0, SEEK_SET);
+            banderaP=0;
         }
-        if(banderaP==0)
-        {
-            printf("error el producto buscado no existe\n");
-        }
-        printf("desea buscar otro producto? s/n\n");
-        scanf(" %c", &banderaN);
-        system("cls");
-        fseek(archi, 0, SEEK_SET);
-        banderaP=0;
+        fclose(archi);
     }
 }
 
-void buscarPorId(FILE* archi)
+void buscarPorId(char archivoProducto[])
 {
     stProducto prod;
     char banderaP = 's';
     int idAux;
     int banderap=0;
     char banderaId='s';
-    while(banderaId=='s')
+    FILE *archi = fopen(archivoProducto, "rb");
+    if(archi != NULL)
     {
-        printf("ingrese el id del producto\n");
+        while(banderaId=='s')
+        {
+            printf("ingrese el id del producto\n");
 
-        while (scanf("%i", &idAux) != 1)
-        {
-            printf("dato invalido. ingrese nuevamente:\n");
-            while(getchar() != '\n');
-        }
-        system("cls");
-        while(fread(&prod, sizeof(stProducto), 1, archi)>0 && banderap==0 )
-        {
-            if (idAux==prod.id && prod.activo==1)
+            while (scanf("%i", &idAux) != 1)
             {
-                mostrarP(prod);
-
-                printf("desea ingresar al menu del producto? s/n\n");
-                scanf(" %c", &banderaP);
-                system("cls");
-
-                if(banderaP=='s')
+                printf("dato invalido. ingrese nuevamente:\n");
+                while(getchar() != '\n');
+            }
+            system("cls");
+            while(fread(&prod, sizeof(stProducto), 1, archi)>0 && banderap==0 )
+            {
+                if (idAux==prod.id && prod.activo==1)
                 {
-                    prod = menuProdElegido(prod);
-                    fseek(archi, sizeof(stProducto)*(-1), SEEK_CUR);
-                    fwrite(&prod, sizeof(stProducto),1, archi);
+                    mostrarP(prod);
 
-                    fflush(archi);
-                    banderap=1;
-                    break;
-                }
-                else
-                {
-                    banderap=1;
+                    printf("desea ingresar al menu del producto? s/n\n");
+                    scanf(" %c", &banderaP);
+                    system("cls");
+
+                    if(banderaP=='s')
+                    {
+                        prod = menuProdElegido(prod);
+                        fseek(archi, sizeof(stProducto)*(-1), SEEK_CUR);
+                        fwrite(&prod, sizeof(stProducto),1, archi);
+
+                        fflush(archi);
+                        banderap=1;
+                        break;
+                    }
+                    else
+                    {
+                        banderap=1;
+                    }
                 }
             }
+            if(banderap==0)
+            {
+                printf("error el producto buscado no existe\n");
+            }
+            printf("desea buscar otro producto? s/n\n");
+            scanf(" %c", &banderaId);
+            system("cls");
+            fseek(archi, 0, SEEK_SET);
+            banderap=0;
         }
-        if(banderap==0)
-        {
-            printf("error el producto buscado no existe\n");
-        }
-        printf("desea buscar otro producto? s/n\n");
-        scanf(" %c", &banderaId);
-        system("cls");
-        fseek(archi, 0, SEEK_SET);
-        banderap=0;
+        fclose(archi);
     }
 }
 

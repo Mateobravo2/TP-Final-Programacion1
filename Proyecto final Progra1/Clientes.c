@@ -110,7 +110,7 @@ stCliente modificarCliente(FILE *archi, int id)
         if(aux.id == id && aux.activo == 1)
         {
             encontrado = 1;
-            printf("\n---Modificando cliente ID: &i\n", aux.id);
+            printf("\n---Modificando cliente ID: %i\n", aux.id);
             printf("Quiere modificar el DNI? (s/n): ");
             scanf(" %c", &op);
             if(op == 's' || op == 'S')

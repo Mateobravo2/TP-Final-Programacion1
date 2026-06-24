@@ -7,5 +7,6 @@ void barraCarga();
 void menuClientes();
 void menuProducto();
 void menuEmpleado();
+void menuBuscarProducto();
 
 #endif // MENUS_H_INCLUDED
