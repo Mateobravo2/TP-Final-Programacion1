@@ -288,13 +288,18 @@ void menuProducto()
             printf("|4|. MOSTRAR PRODUCTOS ECONOMICOS\n");
             printf("|0|. VOLVER AL MENU PRINCIPAL\n");
 
-            scanf("%i", &controlP);
-
+            while (scanf("%i", &controlP) != 1 || controlP< 0 || controlP > 4)
+            {
+                printf("dato invalido. ingrese nuevamente:\n");
+                while(getchar() != '\n');
+            }
+            system("cls");
 
             switch(controlP)
             {
             case 1:
                 cargarStProducto(archivoProducto);
+                system("pause");
                 system("cls");
                 break;
 
@@ -319,6 +324,7 @@ void menuProducto()
             case 0:
                 printf("VOLVIENDO AL MENU...\n");
                 system("pause");
+                system("cls");
                 break;
             }
         }while(controlP != 0);
