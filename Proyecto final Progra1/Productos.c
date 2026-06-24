@@ -4,7 +4,7 @@
 #include <stdlib.h>
 
 ///ALTA PRODUCTO
-void cargarStProducto(char archivoProducto[], Pila* economico)
+void cargarStProducto(char archivoProducto[])
 {
     stProducto prod;
     int i = 0;
@@ -20,10 +20,7 @@ void cargarStProducto(char archivoProducto[], Pila* economico)
         {
             prod = cargaProducto(i+1);
             i++;
-            if(prod.economico == 1)
-            {
-                apilar(economico, i);
-            }
+
             fwrite(&prod, sizeof(stProducto), 1, archi);
             printf("desea seguir cargando datos? s/n\n");
             scanf(" %c", &control);
@@ -40,8 +37,8 @@ stProducto cargaProducto(int i) // Le saqué el parámetro de stock erróneo
 
     printf("ingrese el nombre del producto: ");
     scanf(" %s", aux.nombre);
-   /* fgets( aux.nombre, DIMTEXTO, stdin);
-    aux.nombre[strcspn( aux.nombre, "\n")] = '\0';*/
+    /* fgets( aux.nombre, DIMTEXTO, stdin);
+     aux.nombre[strcspn( aux.nombre, "\n")] = '\0';*/
 
     printf("ingrese el precio del producto: ");
 
@@ -115,16 +112,16 @@ void buscarProducto(char archivoProducto[])
             printf("0. si desea salir\n");
 
             while (scanf("%i", &controlP) != 1)
-           {
-            printf("dato invalido. ingrese nuevamente:\n");
+            {
+                printf("dato invalido. ingrese nuevamente:\n");
                 while(getchar() != '\n');
             }
             system("cls");
 
             switch(controlP)
-        {
-        case 1:
-            buscarPorNombre(archi);
+            {
+            case 1:
+                buscarPorNombre(archi);
                 break;
             case 2:
                 buscarPorId(archi);
@@ -164,7 +161,10 @@ void buscarPorNombre(FILE* archi)
                     prod = menuProdElegido(prod);
                     fseek(archi, sizeof(stProducto)*(-1), SEEK_CUR);
                     fwrite(&prod, sizeof(stProducto),1, archi);
+
+                    fflush(archi);
                     banderaP=1;
+                    break;
                 }
                 else
                 {
@@ -216,7 +216,10 @@ void buscarPorId(FILE* archi)
                     prod = menuProdElegido(prod);
                     fseek(archi, sizeof(stProducto)*(-1), SEEK_CUR);
                     fwrite(&prod, sizeof(stProducto),1, archi);
+
+                    fflush(archi);
                     banderap=1;
+                    break;
                 }
                 else
                 {
@@ -269,33 +272,33 @@ stProducto menuProdElegido(stProducto prod)
             fgets(prod.nombre, DIMTEXTO, stdin);
             prod.nombre[strcspn(prod.nombre, "\n")] = '\0';
             break;
+
         case 2:
             printf("que precio quiere seleccionar para %s\n", prod.nombre);
-            while (scanf("%f", &aux.precio) != 1 || aux.precio <= 0)
+            while (scanf("%f", &prod.precio) != 1 || prod.precio <= 0)
             {
                 printf("dato invalido. ingrese nuevamente:\n");
                 while(getchar() != '\n');
             }
-            if(aux.precio<=2000)
+            if(prod.precio<=2000)
             {
-                aux.economico=1;
+                prod.economico=1;
             }
             else
             {
-                aux.economico=0;
+                prod.economico=0;
             }
-            prod.precio= aux.precio;
             break;
+
         case 3:
             printf("cuantas unidades va querer en %s\n", prod.nombre);
-            while (scanf("%i", &aux.stock) != 1 || aux.stock<=0 )
+            while (scanf("%i", &prod.stock) != 1 || prod.stock<=0 )
             {
                 printf("dato invalido. ingrese nuevamente:\n");
                 while(getchar() != '\n');
             }
-
-            prod.stock= aux.stock;
             break;
+
         case 4:
             prod.activo=0;
             printf("el archivo a sido eliminado.\n");
@@ -311,16 +314,28 @@ stProducto menuProdElegido(stProducto prod)
 void mostrarProductoEconomico(char archivoProducto[], Pila cant)
 {
     stProducto prod;
+    int i=1;
     FILE* archi= fopen(archivoProducto, "rb");
     if(archi!=NULL)
     {
+        while(fread(&prod, sizeof(stProducto),1,archi)>0)
+        {
+            if(prod.economico == 1 && prod.activo==1)
+            {
+                apilar(&cant, i);
+            }
+            i++;
+        }
+
+        fseek(archi, 0, SEEK_SET);
+
         printf("------PRODUCTOS ECONOMICOS------\n");
         while(!pilavacia(&cant))
         {
-           fseek(archi, sizeof(stProducto)*desapilar(&cant), SEEK_SET);
-           fseek(archi, sizeof(stProducto)*-1, SEEK_CUR);
-           fread(&prod, sizeof(stProducto),1,archi);
-           mostrarP(prod);
+            fseek(archi, sizeof(stProducto)*desapilar(&cant), SEEK_SET);
+            fseek(archi, sizeof(stProducto)*-1, SEEK_CUR);
+            fread(&prod, sizeof(stProducto),1,archi);
+            mostrarP(prod);
         }
         fclose(archi);
     }

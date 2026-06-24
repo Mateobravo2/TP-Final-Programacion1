@@ -294,8 +294,7 @@ void menuProducto()
             switch(controlP)
             {
             case 1:
-                cargarStProducto(archivoProducto, &baratos);
-                system("pause");
+                cargarStProducto(archivoProducto);
                 system("cls");
                 break;
 
