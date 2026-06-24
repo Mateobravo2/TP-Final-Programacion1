@@ -82,7 +82,7 @@ void menuClientes()
     char nombre[DIMTEXTO] = "clientes.bin";
     do
     {
-        printf("\x1b[34mCLIENTES\x1b[0m\n");
+        printf("--------\x1b[34mCLIENTES\x1b[0m--------\n");
         printf("Ingrese la accion a realizar:\n");
         printf("______________________________________\n");
         printf("| [1] ALTA DE CLIENTE                |\n");
@@ -304,9 +304,9 @@ void menuProducto()
                 break;
 
             case 2:
-                menuBuscarProducto();
-                system("pause");
                 system("cls");
+                barraCarga();
+                menuBuscarProducto();
                 break;
 
             case 3:
@@ -322,7 +322,7 @@ void menuProducto()
                 break;
 
             case 0:
-                printf("VOLVIENDO AL MENU...\n");
+                printf("VOLVIENDO AL MENU PRINCIPAL...\n");
                 barraCarga();
                 break;
 
@@ -342,8 +342,8 @@ void menuBuscarProducto()
     do
     {
         printf("-------MENU BUSQUEDA DE PRODUCTO-------\n\n");
-        printf("_______________________________________");
         printf("|    SELECCIONE LA OPCION DESEADA     |\n");
+        printf("_______________________________________\n");
         printf("| [1] Buscar producto por nombre      |\n");
         printf("| [2] Buscar producto por ID          |\n");
         printf("| [0]           VOLVER                |\n");
@@ -373,5 +373,5 @@ void menuBuscarProducto()
             break;
         }
     }
-    while(controlP==0);
+    while(controlP != 0);
 }
