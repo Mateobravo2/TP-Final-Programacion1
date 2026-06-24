@@ -12,7 +12,7 @@ stCliente crearCliente(int id)
     printf("Ingrese el DNI del cliente: ");
     scanf("%i", &aux.dni);
     while(getchar() != '\n');
-    printf(" Ingrese el nombre del cliente: ");
+    printf("Ingrese el nombre del cliente: ");
     fgets(aux.nombre, DIMTEXTO, stdin);
     aux.nombre[strcspn(aux.nombre, "\n")] = '\0';
     aux.activo = 1;
@@ -126,12 +126,6 @@ stCliente modificarCliente(FILE *archi, int id)
                 printf("\n Ingrese el nuevo nombre: ");
                 fgets(aux.nombre, DIMTEXTO, stdin);
                 aux.nombre[strcspn(aux.nombre, "\n")] = '\0';
-            }
-            printf("\nQuiere modificar el carrito? (s/n): ");
-            scanf(" %c", &op);
-            if(op == 's' || op == 'S')
-            {
-                printf("\n Ingrese el nuevo carrito: ");
             }
             fseek(archi, -sizeof(stCliente), SEEK_CUR);
             fwrite(&aux, sizeof(stCliente), 1, archi);

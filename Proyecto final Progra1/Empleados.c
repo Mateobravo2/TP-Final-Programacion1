@@ -12,7 +12,7 @@ stEmpleado crearUnEmpleado(int id)
     aux.id = id;
     aux.activo = 1;
     printf("_____________________________________________\n");
-    printf(" Ingrese el dni del empleado: ");
+    printf(" Ingrese el DNI del empleado: ");
     scanf(" %i", &aux.dni);
     int edad;
     do
@@ -29,7 +29,8 @@ stEmpleado crearUnEmpleado(int id)
     printf(" Ingrese el nombre y apellido del empleado: ");
     fgets(aux.nombreYApellido, DIMTEXTO, stdin);
     aux.nombreYApellido[strcspn(aux.nombreYApellido, "\n")] = '\0';
-    printf(" ingrese puesto del empleado: ");
+    while (getchar() != '\n');
+    printf(" Ingrese puesto del empleado: ");
     fgets(aux.puesto, DIMTEXTO, stdin);
     aux.puesto[strcspn(aux.puesto, "\n")] = '\0';
     printf("---------------------------------------------\n ");
@@ -127,7 +128,7 @@ stEmpleado modificarEmpleado(FILE *archi, int id)
             if(aux.id == id && aux.activo == 1)
             {
                 encontrado = 1;
-                printf("\n---Modificando Empleado ID: &i\n", aux.id);
+                printf("\n---Modificando Empleado ID: %i\n", aux.id);
                 printf("Quiere modificar el DNI? (s/n): ");
                 scanf(" %c", &op);
                 if(op == 's' || op == 'S')
@@ -151,8 +152,8 @@ stEmpleado modificarEmpleado(FILE *archi, int id)
                     printf("\nIngrese la nueva edad: ");
                     scanf("%i", &aux.edad);
                 }
-                printf("\nQuiere modificar el puesto? (s/n): ");
-                scanf(" %c", &op);
+                    printf("\nQuiere modificar el puesto? (s/n): ");
+                    scanf(" %c", &op);
                 if(op == 's' || op == 'S')
                 {
                     while(getchar() != '\n');

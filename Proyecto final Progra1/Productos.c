@@ -94,8 +94,8 @@ void mostrarP(stProducto prod)
 void buscarPorNombre(char archivoProducto[])
 {
     stProducto prod;
+    char nombreProd[DIMTEXTO];
     int banderaP=0;
-    char nombreAux[20];
     char banderaN='s';
     char banderaNo='s';
     FILE *archi = fopen(archivoProducto, "rb");
@@ -105,12 +105,12 @@ void buscarPorNombre(char archivoProducto[])
         {
             while(getchar() != '\n');
             printf("Ingrese el nombre del producto\n");
-            fgets(prod.nombre, DIMTEXTO, stdin);
-            prod.nombre[strcspn(prod.nombre, "\n")] = '\0';
+            fgets(nombreProd, DIMTEXTO, stdin);
+            nombreProd[strcspn(nombreProd, "\n")] = '\0';
             system("cls");
             while(fread(&prod, sizeof(stProducto), 1, archi)>0 && banderaP==0)
             {
-                if (strcmpi(nombreAux,prod.nombre) == 0 && prod.activo==1)
+                if (strcmpi(nombreProd,prod.nombre) == 0 && prod.activo==1)
                 {
                     mostrarP(prod);
                     printf("Desea ingresar al menu del producto? s/n\n");
