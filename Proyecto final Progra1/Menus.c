@@ -18,12 +18,12 @@ void menuPrincipal()
     do
     {
         printf("Ingrese una opcion:\n");
-        printf("_________________\n");
-        printf("|\x1b[34m[1] CLIENTE\x1b[0m    |\n");
-        printf("|\x1b[33m[2] EMPLEADO\x1b[0m   |\n");
-        printf("|\x1b[32m[3] PRODUCTO\x1b[0m   |\n");
-        printf("|\x1b[31m[0] SALIR\x1b[0m      |\n");
-        printf("-----------------\n");
+        printf("___________________\n");
+        printf("| \x1b[34m[1] CLIENTES\x1b[0m    |\n");
+        printf("| \x1b[33m[2] EMPLEADOS\x1b[0m   |\n");
+        printf("| \x1b[32m[3] PRODUCTOS\x1b[0m   |\n");
+        printf("| \x1b[31m[0] SALIR\x1b[0m       |\n");
+        printf("-------------------\n");
         if (scanf("%i", &op) != 1)
         {
             while (getchar() != '\n');
@@ -59,7 +59,6 @@ void menuPrincipal()
             {
               printf("veces ejecutadas: %i", tope(&contador));
             }
-
             break;
         }
 
@@ -90,18 +89,18 @@ void menuClientes()
     char nombre[DIMTEXTO] = "clientes.bin";
     do
     {
-        printf("\x1b[34mCLIENTE\x1b[0m\n");
+        printf("\x1b[34mCLIENTES\x1b[0m\n");
         printf("Ingrese la accion a realizar:\n");
-        printf("_____________________________________\n");
-        printf("|[1] ALTA DE CLIENTE                |\n");
-        printf("|[2] BAJA DE CLIENTE                |\n");
-        printf("|[3] MODIFICAR CLIENTE              |\n");
-        printf("|[4] MOSTRAR TODOS LOS CLIENTES     |\n");
-        printf("|[5] MOSTRAR CLIENTE POR ID         |\n");
-        printf("|[6] MOSTRAR CLIENTE A-Z            |\n");
-        printf("|[7] MOSTRAR CLIENTE ORDEN POR DNI  |\n");
-        printf("|\x1b[31m[0]          SALIR\x1b[0m                 |\n");
-        printf("-------------------------------------\n");
+        printf("______________________________________\n");
+        printf("| [1] ALTA DE CLIENTE                |\n");
+        printf("| [2] BAJA DE CLIENTE                |\n");
+        printf("| [3] MODIFICAR CLIENTE              |\n");
+        printf("| [4] MOSTRAR TODOS LOS CLIENTES     |\n");
+        printf("| [5] MOSTRAR CLIENTE POR ID         |\n");
+        printf("| [6] MOSTRAR CLIENTE A-Z            |\n");
+        printf("| [7] MOSTRAR CLIENTE ORDEN POR DNI  |\n");
+        printf("| \x1b[31m[0] VOLVER AL MENU PRINCIPAL\x1b[0m      |\n");
+        printf("--------------------------------------\n");
         if (scanf("%i", &op) != 1)
         {
             while (getchar() != '\n');
@@ -187,16 +186,17 @@ void menuEmpleado()
     char nombreArchivo[DIMTEXTO] = "empleados.bin";
     do
     {
-        printf("_____________________________________\n");
-        printf("|[1] ALTA DE EMPLEADO               |\n");
-        printf("|[2] BAJA DE EMPLEADO               |\n");
-        printf("|[3] MODIFICAR EMPLEADO             |\n");
-        printf("|[4] MOSTRAR TODOS LOS EMPLEADO     |\n");
-        printf("|[5] MOSTRAR EMPLEADO POR ID        |\n");
-        printf("|[6] MOSTRAR EMPLEADO A-Z           |\n");
-        printf("|[7] MOSTRAR EMPLEADO ORDEN POR DNI |\n");
-        printf("|\x1b[31m[0]          SALIR\x1b[0m                 |\n");
-        printf("-------------------------------------\n");
+        printf("\x1b[33mEMPLEADOS\x1b[0m\n");
+        printf("______________________________________\n");
+        printf("| [1] ALTA DE EMPLEADO               |\n");
+        printf("| [2] BAJA DE EMPLEADO               |\n");
+        printf("| [3] MODIFICAR EMPLEADO             |\n");
+        printf("| [4] MOSTRAR TODOS LOS EMPLEADO     |\n");
+        printf("| [5] MOSTRAR EMPLEADO POR ID        |\n");
+        printf("| [6] MOSTRAR EMPLEADO A-Z           |\n");
+        printf("| [7] MOSTRAR EMPLEADO ORDEN POR DNI |\n");
+        printf("| \x1b[31m[0] VOLVER AL MENU PRINCIPAL\x1b[0m      |\n");
+        printf("--------------------------------------\n");
         if (scanf("%i", &op) != 1)
         {
             while (getchar() != '\n');
@@ -281,20 +281,20 @@ void menuProducto()
     inicpila(&baratos);
         do
         {
-            printf("------MENU PRODUCTO------\n");
-            printf("|1|. CARGAR PRODUCTO\n");
-            printf("|2|. BUSCAR PRODUCTO\n");
-            printf("|3|. MOSTRAR PRODUCTO\n");
-            printf("|4|. MOSTRAR PRODUCTOS ECONOMICOS\n");
-            printf("|0|. VOLVER AL MENU PRINCIPAL\n");
-
-            while (scanf("%i", &controlP) != 1 || controlP< 0 || controlP > 4)
+            printf("\x1b[32m PRODUCTOS\x1b[0m\n");
+            printf("_____________________________________\n");
+            printf("| [1] CARGAR PRODUCTO               |\n");
+            printf("| [2] BUSCAR PRODUCTO               |\n");
+            printf("| [3] MOSTRAR PRODUCTO              |\n");
+            printf("| [4] MOSTRAR PRODUCTOS ECONOMICOS  |\n");
+            printf("| \x1b[31m[0] VOLVER AL MENU PRINCIPAL\x1b[0m      |\n");
+            printf("-------------------------------------\n");
+            if (scanf("%i", &controlP) != 1)
             {
-                printf("dato invalido. ingrese nuevamente:\n");
-                while(getchar() != '\n');
+                while (getchar() != '\n');
+                controlP = -1;
             }
             system("cls");
-
             switch(controlP)
             {
             case 1:
@@ -323,6 +323,11 @@ void menuProducto()
 
             case 0:
                 printf("VOLVIENDO AL MENU...\n");
+                barraCarga();
+                break;
+
+            default:
+                printf("~ ~ ~ INGRESE UNA OPCION VALIDA ~ ~ ~\n");
                 system("pause");
                 system("cls");
                 break;

@@ -22,7 +22,7 @@ void cargarStProducto(char archivoProducto[])
             i++;
 
             fwrite(&prod, sizeof(stProducto), 1, archi);
-            printf("desea seguir cargando datos? s/n\n");
+            printf("Desea seguir cargando datos? s/n\n");
             scanf(" %c", &control);
         }
         fclose(archi);
@@ -35,16 +35,13 @@ stProducto cargaProducto(int i) // Le saqué el parámetro de stock erróneo
     stProducto aux;
     aux.id = i;
 
-    printf("ingrese el nombre del producto: ");
-    scanf(" %s", aux.nombre);
-    /* fgets( aux.nombre, DIMTEXTO, stdin);
-     aux.nombre[strcspn( aux.nombre, "\n")] = '\0';*/
-
-    printf("ingrese el precio del producto: ");
-
+    printf("Ingrese el nombre del producto: ");
+    fgets( aux.nombre, DIMTEXTO, stdin);
+    aux.nombre[strcspn( aux.nombre, "\n")] = '\0';
+    printf("Ingrese el precio del producto: ");
     while (scanf("%f", &aux.precio) != 1 || aux.precio<=0)
     {
-        printf("dato invalido. ingrese nuevamente: ");
+        printf("Dato invalido. Ingrese nuevamente: ");
         while(getchar() != '\n');
     }
     if(aux.precio <= 2000)
@@ -56,10 +53,10 @@ stProducto cargaProducto(int i) // Le saqué el parámetro de stock erróneo
         aux.economico = 0;
     }
 
-    printf("ingrese la cantidad de productos: ");
+    printf("Ingrese la cantidad de productos: ");
     while (scanf("%i", &aux.stock) != 1 || aux.stock<=0)
     {
-        printf("dato invalido. ingrese nuevamente: ");
+        printf("Dato invalido. ingrese nuevamente: ");
         while(getchar() != '\n');
     }
     aux.activo=1;
@@ -89,10 +86,10 @@ void mostrarP(stProducto prod)
 {
     printf("\n");
     printf("_________________________\n");
-    printf("id de producto %i\n", prod.id);
+    printf("ID de producto %i\n", prod.id);
     printf("%s\n", prod.nombre);
-    printf(" precio $%.2f\n", prod.precio);
-    printf("unidades %i\n", prod.stock);
+    printf("Precio $%.2f\n", prod.precio);
+    printf("Unidades %i\n", prod.stock);
     printf("-------------------------\n");
 }
 
@@ -113,7 +110,7 @@ void buscarProducto(char archivoProducto[])
 
             while (scanf("%i", &controlP) != 1)
             {
-                printf("dato invalido. ingrese nuevamente:\n");
+                printf("Dato invalido. Ingrese nuevamente: \n");
                 while(getchar() != '\n');
             }
             system("cls");
@@ -143,19 +140,17 @@ void buscarPorNombre(FILE* archi)
 
     while(banderaN=='s')
     {
-        printf("ingrese el nombre del producto\n");
+        printf("Ingrese el nombre del producto\n");
         scanf(" %s", &nombreAux);
         system("cls");
-
         while(fread(&prod, sizeof(stProducto), 1, archi)>0 && banderaP==0)
         {
             if (strcmpi(nombreAux,prod.nombre) == 0 && prod.activo==1)
             {
                 mostrarP(prod);
-                printf("desea ingresar al menu del producto? s/n\n");
+                printf("Desea ingresar al menu del producto? s/n\n");
                 scanf(" %c", &banderaNo);
                 system("cls");
-
                 if(banderaNo=='s')
                 {
                     prod = menuProdElegido(prod);
@@ -326,9 +321,7 @@ void mostrarProductoEconomico(char archivoProducto[], Pila cant)
             }
             i++;
         }
-
         fseek(archi, 0, SEEK_SET);
-
         printf("------PRODUCTOS ECONOMICOS------\n");
         while(!pilavacia(&cant))
         {
@@ -339,6 +332,5 @@ void mostrarProductoEconomico(char archivoProducto[], Pila cant)
         }
         fclose(archi);
     }
-
 }
 

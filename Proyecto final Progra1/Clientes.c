@@ -258,7 +258,7 @@ void menuVenta(stCliente comprador, char archivoProducto[])
                     printf("CUANTOS DESEA COMPRAR?\n");
                     while (scanf("%i", &cant) != 1)
                     {
-                        printf("dato invalido. ingrese nuevamente:\n");
+                        printf("Dato invalido. Ingrese nuevamente:\n");
                         while(getchar() != '\n');
                     }
 
@@ -267,21 +267,20 @@ void menuVenta(stCliente comprador, char archivoProducto[])
                         fseek(archi, sizeof(stProducto)*(-1), SEEK_CUR);
                         prod.stock-=cant;
                         fwrite(&prod, sizeof(stProducto),1, archi);
-
-                        printf("venta realizada correctamente, usted ha comprado %i %s", cant, pro);
+                        printf("Venta realizada correctamente, usted ha comprado %i %s", cant, pro);
                         bandera=1;
                     }
                     else
                     {
-                        printf("error, no existe esa cantidad de productos\n");
+                        printf("ERROR: no existe esa cantidad de productos\n");
                     }
                 }
                 else
                 {
-                    printf("no existe ese producto\n");
+                    printf("No existe ese producto\n");
                 }
             }
-            printf("desea hacer otra compra? s/n\n");
+            printf("Desea hacer otra compra? s/n\n");
             scanf(" %c", &band);
             fseek(archi, 0, SEEK_SET);
             system("cls");
@@ -313,7 +312,7 @@ void listarClientesSeleccionAlfabetica(char nombre[])
         lista[posMenor] = lista[i];
         lista[i] = temp;
     }
-    printf("\n--- LISTADO ALFABETICO (SELECCION) ---\n");
+    printf("\n--- LISTADO ALFABETICO ---\n");
     for(int i = 0; i < validos; i++)
     {
         mostrarCliente(lista[i]);
@@ -357,7 +356,7 @@ void listarClientesInsercionDni(char nombre[])
         }
         lista[j + 1] = aux;
     }
-    printf("\n--- LISTADO POR DNI (INSERCION) ---\n");
+    printf("\n--- LISTADO POR DNI ---\n");
     for(int i = 0; i < validos; i++)
     {
         mostrarCliente(lista[i]);
