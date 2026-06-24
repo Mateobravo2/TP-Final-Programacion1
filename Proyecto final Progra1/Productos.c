@@ -28,7 +28,7 @@ void cargarStProducto(char archivoProducto[])
     }
 }
 
-stProducto cargaProducto(int i) // Le saqué el parámetro de stock erróneo
+stProducto cargaProducto(int i)
 {
     stProducto aux;
     aux.id = i;
