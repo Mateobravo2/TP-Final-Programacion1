@@ -347,7 +347,7 @@ void menuBuscarProducto()
         printf("| [1] Buscar producto por nombre      |\n");
         printf("| [2] Buscar producto por ID          |\n");
         printf("| [0]           VOLVER                |\n");
-        printf("---------------------------------------");
+        printf("---------------------------------------\n");
         while (scanf("%i", &controlP) != 1)
         {
             while(getchar() != '\n');

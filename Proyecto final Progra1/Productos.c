@@ -32,7 +32,7 @@ stProducto cargaProducto(int i) // Le saqué el parámetro de stock erróneo
 {
     stProducto aux;
     aux.id = i;
-
+    while(getchar() != '\n');
     printf("Ingrese el nombre del producto: ");
     fgets( aux.nombre, DIMTEXTO, stdin);
     aux.nombre[strcspn( aux.nombre, "\n")] = '\0';
@@ -103,8 +103,10 @@ void buscarPorNombre(char archivoProducto[])
     {
          while(banderaN=='s')
         {
+            while(getchar() != '\n');
             printf("Ingrese el nombre del producto\n");
-            scanf(" %s", &nombreAux);
+            fgets(prod.nombre, DIMTEXTO, stdin);
+            prod.nombre[strcspn(prod.nombre, "\n")] = '\0';
             system("cls");
             while(fread(&prod, sizeof(stProducto), 1, archi)>0 && banderaP==0)
             {
@@ -151,10 +153,10 @@ void buscarPorId(char archivoProducto[])
     int idAux;
     int banderap=0;
     char banderaId='s';
-    FILE *archi = fopen(archivoProducto, "rb");
+    FILE *archi = fopen(archivoProducto, "r+b");
     if(archi != NULL)
     {
-        while(banderaId=='s')
+        while(banderaId == 's')
         {
             printf("ingrese el id del producto\n");
 
@@ -179,10 +181,8 @@ void buscarPorId(char archivoProducto[])
                         prod = menuProdElegido(prod);
                         fseek(archi, sizeof(stProducto)*(-1), SEEK_CUR);
                         fwrite(&prod, sizeof(stProducto),1, archi);
-
                         fflush(archi);
-                        banderap=1;
-                        break;
+                        banderap = 1;
                     }
                     else
                     {
@@ -192,42 +192,37 @@ void buscarPorId(char archivoProducto[])
             }
             if(banderap==0)
             {
-                printf("error el producto buscado no existe\n");
+                printf("ERROR: el producto buscado no existe\n");
             }
-            printf("desea buscar otro producto? s/n\n");
+            printf("Desea buscar otro producto? s/n\n");
             scanf(" %c", &banderaId);
             system("cls");
             fseek(archi, 0, SEEK_SET);
-            banderap=0;
+            banderap = 0;
         }
         fclose(archi);
     }
 }
 
 //MODIFICACION Y BAJA
-
-
-
-//MODIFICACION Y BAJA
 stProducto menuProdElegido(stProducto prod)
 {
     int opp;
-    stProducto aux;
     do
     {
         printf("________MENU PRODUCTO %s________\n", prod.nombre);
-        printf("|1|. MODIFICAR NOMBRE\n");
-        printf("|2|. MODIFICAR PRECIO\n");
-        printf("|3|. MODIFICAR STOCK\n");
-        printf("|4|. ELIMINAR PRODUCTO\n");
-        printf("|0|. SALIR\n");
-
+        printf("__________________________\n");
+        printf("| [1] MODIFICAR NOMBRE   |\n");
+        printf("| [2] MODIFICAR PRECIO   |\n");
+        printf("| [3] MODIFICAR STOCK    |\n");
+        printf("| [4] ELIMINAR PRODUCTO  |\n");
+        printf("| [0] SALIR              |\n");
+        printf("--------------------------\n");
         while (scanf("%i", &opp) != 1)
         {
-            printf("Invalido. Intente de nuevo: ");
-            getchar() != '\n';
+            while(getchar() != '\n');
+            opp = -1;
         }
-
         system("cls");
         switch(opp)
         {
@@ -239,10 +234,10 @@ stProducto menuProdElegido(stProducto prod)
             break;
 
         case 2:
-            printf("que precio quiere seleccionar para %s\n", prod.nombre);
+            printf("Que precio quiere seleccionar para %s\n", prod.nombre);
             while (scanf("%f", &prod.precio) != 1 || prod.precio <= 0)
             {
-                printf("dato invalido. ingrese nuevamente:\n");
+                printf("Dato invalido. ingrese nuevamente:\n");
                 while(getchar() != '\n');
             }
             if(prod.precio<=2000)
@@ -256,18 +251,21 @@ stProducto menuProdElegido(stProducto prod)
             break;
 
         case 3:
-            printf("cuantas unidades va querer en %s\n", prod.nombre);
+            printf("Cuantas unidades va querer de %s\n", prod.nombre);
             while (scanf("%i", &prod.stock) != 1 || prod.stock<=0 )
             {
-                printf("dato invalido. ingrese nuevamente:\n");
+                printf("Dato invalido. ingrese nuevamente:\n");
                 while(getchar() != '\n');
             }
             break;
 
         case 4:
-            prod.activo=0;
-            printf("el archivo a sido eliminado.\n");
+            prod.activo = 0;
+            printf("El elemento | %i | a sido eliminado.\n", prod.id);
             opp = 0;
+            break;
+        case 0:
+            printf(" --- VOLVIENDO ---");
             break;
         }
     }

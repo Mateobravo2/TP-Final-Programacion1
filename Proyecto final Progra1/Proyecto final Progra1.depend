@@ -37,7 +37,7 @@
 	<stdio.h>
 	"Productos.h"
 
-1782323719 d:\facultad\programacion1\tpfinal\github\tp-final-programacion1\proyecto final progra1\productos.h
+1782324979 d:\facultad\programacion1\tpfinal\github\tp-final-programacion1\proyecto final progra1\productos.h
 	<stdio.h>
 	<string.h>
 	"pila.h"
@@ -59,7 +59,7 @@
 
 1782323734 d:\facultad\programacion1\tpfinal\github\tp-final-programacion1\proyecto final progra1\menus.h
 
-1782323755 source:d:\facultad\programacion1\tpfinal\github\tp-final-programacion1\proyecto final progra1\menus.c
+1782324709 source:d:\facultad\programacion1\tpfinal\github\tp-final-programacion1\proyecto final progra1\menus.c
 	"Menus.h"
 	"Clientes.h"
 	"Empleados.h"
@@ -69,7 +69,7 @@
 	<windows.h>
 	"pila.h"
 
-1782323719 source:d:\facultad\programacion1\tpfinal\github\tp-final-programacion1\proyecto final progra1\productos.c
+1782324709 source:d:\facultad\programacion1\tpfinal\github\tp-final-programacion1\proyecto final progra1\productos.c
 	"Productos.h"
 	<string.h>
 	<stdio.h>
