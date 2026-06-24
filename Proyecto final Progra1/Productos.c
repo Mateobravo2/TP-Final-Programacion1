@@ -265,7 +265,7 @@ stProducto menuProdElegido(stProducto prod)
             opp = 0;
             break;
         case 0:
-            printf(" --- VOLVIENDO ---");
+            printf("--- VOLVIENDO ---\n");
             break;
         }
     }

@@ -13,14 +13,19 @@ void menuPrincipal()
 {
     int op;
     int i=0;
+    char opciones[4][DIMTEXTO] = {"\x1b[34m[1] CLIENTES\x1b[0m",
+    "\x1b[33m[2] EMPLEADOS\x1b[0m",
+    "\x1b[32m[3] PRODUCTOS\x1b[0m",
+    "\x1b[31m[0] SALIR\x1b[0m"
+    };
     do
     {
         printf("Ingrese una opcion:\n");
         printf("___________________\n");
-        printf("| \x1b[34m[1] CLIENTES\x1b[0m    |\n");
-        printf("| \x1b[33m[2] EMPLEADOS\x1b[0m   |\n");
-        printf("| \x1b[32m[3] PRODUCTOS\x1b[0m   |\n");
-        printf("| \x1b[31m[0] SALIR\x1b[0m       |\n");
+        for(int i = 0; i < 4; i++)
+        {
+            printf("| %-25s |\n", opciones[i]);
+        }
         printf("-------------------\n");
         if (scanf("%i", &op) != 1)
         {
